@@ -1,0 +1,16 @@
+<ion-view view-title="Home">
+  <ion-content>
+	<div class="list">
+      <div class="item item-icon-right" ng-repeat="post in posts">
+      	<a class="post_list" href="#/menu/home/{{post.id}}">
+        	<div class="row post_row">
+        		<div class="row">
+        		<div class="col col-75">{{post.title}}<br>{{post.author}}</div>
+        		<div class="col"><i class="icon ion-chatbubble-working post_icon_top"></i></div>
+        		</div>
+        	</div>
+    	</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
