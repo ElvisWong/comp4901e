@@ -1,0 +1,17 @@
+<ion-view view-title="Online Pitching">
+  <ion-content>
+    <div class="list">
+    <a class="item item-thumbnail-left item-icon-right" href="#/menu/pitching/{{pitchingVideo.id}}" ng-repeat="pitchingVideo in pitchingVideoList">
+      <div class="video-container">
+            <iframe src="http://www.youtube.com/embed/KBKXu3Kg4yg?rel=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-description">
+      	<h2>{{pitchingVideo.title}}</h2>
+      	<p>{{pitchingVideo.teamName}}</p>
+      </div>
+      <i class="icon ion-chevron-right"></i>
+    </a>
+</div>
+  </ion-content>
+</ion-view>
+

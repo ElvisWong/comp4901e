@@ -76,28 +76,28 @@ angular.module('starter.controllers', [])
 
 .controller('DiscussionForumCtrl', function($scope) {
   $scope.posts = [
-  { title: 'Post 1', author: 'Elvis Wong', id: 1 },
-  { title: 'Post 2', author: 'Elvis Wong', id: 2 },
-  { title: 'Post 3', author: 'Elvis Wong', id: 3 },
-  { title: 'Post 4', author: 'Elvis Wong', id: 4 },
-  { title: 'Post 5', author: 'Elvis Wong', id: 5 },
-  { title: 'Post 6', author: 'Elvis Wong', id: 6 },
-  { title: 'Post 7', author: 'Elvis Wong', id: 7 },
-  { title: 'Post 8', author: 'Elvis Wong', id: 8 }
+  { title: 'Post 1 - Hello World Project', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 1 },
+  { title: 'Post 2', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 2 },
+  { title: 'Post 3', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-picture.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 3 },
+  { title: 'Post 4', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 4 },
+  { title: 'Post 5', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 5 },
+  { title: 'Post 6', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-picture.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 6 },
+  { title: 'Post 7', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 7 },
+  { title: 'Post 8', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 8 }
   ];
 })
 
 .controller('PostCtrl', function($scope, $stateParams) {
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
+.controller('PitchingCtrl', function($scope) {
+  $scope.pitchingVideoList = [
+    { title: 'Reggae', id: 1, teamName: 'Project Group 12' },
+    { title: 'Chill', id: 2, teamName: 'Project Group 12' },
+    { title: 'Dubstep', id: 3, teamName: 'Project Group 12' },
+    { title: 'Indie', id: 4, teamName: 'Project Group 12' },
+    { title: 'Rap', id: 5, teamName: 'Project Group 12' },
+    { title: 'Cowbell', id: 6, teamName: 'Project Group 12' }
   ];
 })
 

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'angular-timeline'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -67,11 +67,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('menu.search', {
-    url: '/search',
+  .state('menu.groups', {
+    url: '/groups',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html'
+        templateUrl: 'templates/groups.html'
       }
     }
   })
@@ -84,18 +84,18 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-    .state('menu.playlists', {
-      url: '/playlists',
+    .state('menu.pitching', {
+      url: '/pitching',
       views: {
         'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/pitching.html',
+          controller: 'PitchingCtrl'
         }
       }
     })
 
   .state('menu.single', {
-    url: '/playlists/:playlistId',
+    url: '/pitching/:PlaylistId',
     views: {
       'menuContent': {
         templateUrl: 'templates/playlist.html',

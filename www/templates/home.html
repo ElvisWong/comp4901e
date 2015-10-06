@@ -1,16 +1,30 @@
 <ion-view view-title="Home">
   <ion-content>
-	<div class="list">
-      <div class="item item-icon-right" ng-repeat="post in posts">
-      	<a class="post_list" href="#/menu/home/{{post.id}}">
-        	<div class="row post_row">
-        		<div class="row">
-        		<div class="col col-75">{{post.title}}<br>{{post.author}}</div>
-        		<div class="col"><i class="icon ion-chatbubble-working post_icon_top"></i></div>
-        		</div>
-        	</div>
-    	</a>
-      </div>
-    </div>
+
+	<section id="cd-timeline" class="cd-container" ng-repeat="post in posts">
+		<div class="cd-timeline-block">
+			<div class="cd-timeline-tagbox">
+			<a href="#" class="tag">Category</a>
+			<br>
+			<br>
+			<a href="#" class="tag">App</a>
+			</div>
+			<a href="#/menu/home/{{post.id}}" class="cd-timeline-box">
+			<div class="cd-timeline-content">
+				<h2>{{post.title}}</h2>
+				<div class="cd-postbox">
+					<i class="icon ion-thumbsup"></i>
+					<span class="cd-number">{{post.like}}</span>
+					<br>
+					<i class="icon ion-eye"></i>
+					<span class="cd-number">{{post.view}}</span>
+				</div>
+				<h6>{{post.author}}</h6>
+				
+				<span class="cd-date">{{post.date}} | {{post.time}}</span>
+			</div> <!-- cd-timeline-content -->
+			</a>
+		</div> <!-- cd-timeline-block -->
+	</section> <!-- cd-timeline -->
   </ion-content>
 </ion-view>
