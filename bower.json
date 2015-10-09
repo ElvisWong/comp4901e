@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
   "dependencies": {
-    "angular-timeline": "~1.5.2"
+    "angular-timeline": "~1.5.2",
+    "angular-animate": "~1.2.13"
   }
 }

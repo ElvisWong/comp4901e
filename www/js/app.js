@@ -67,6 +67,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-timeline'])
     }
   })
 
+  .state('menu.board', {
+    url: '/home/createBoard',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/recuitmentBoard.html',
+        controller: 'BoardCtrl'
+      }
+    }
+  })
+
   .state('menu.groups', {
     url: '/groups',
     views: {

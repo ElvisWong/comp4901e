@@ -87,7 +87,14 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PostCtrl', function($scope, $stateParams) {
+.controller('PostCtrl', function($scope, $stateParams, $state) {
+  $scope.createBoard = function() {
+    $state.go('menu.board');
+  };
+})
+
+.controller('BoardCtrl', function($scope){
+
 })
 
 .controller('PitchingCtrl', function($scope) {
