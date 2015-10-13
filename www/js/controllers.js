@@ -13,6 +13,7 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
   $scope.regData = {};
 
+
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     id: '1',
@@ -74,27 +75,112 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DiscussionForumCtrl', function($scope) {
-  $scope.posts = [
-  { title: 'Post 1 - Hello World Project', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 1 },
-  { title: 'Post 2', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 2 },
-  { title: 'Post 3', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-picture.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 3 },
-  { title: 'Post 4', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 4 },
-  { title: 'Post 5', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 5 },
-  { title: 'Post 6', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-picture.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 6 },
-  { title: 'Post 7', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-location.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 7 },
-  { title: 'Post 8', author: 'Elvis Wong', like: 13, view: 368, type: "cd-icon-movie.svg", content: 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', date: 'Oct 5, 2015', time: "23:30:30", id: 8 }
-  ];
+.controller('DiscussionForumCtrl', function($scope, $ionicModal, $state, $timeout, $http) {
+
+  $http.get('js/post.json').success(function(response){
+    $scope.posts = null;
+    $scope.posts = response;
+    console.log($scope.posts);
+  });
+
+  $scope.postData = {};
+
+   $ionicModal.fromTemplateUrl('templates/createTopic.html', {
+    id: '1',
+    scope: $scope,
+    backdropClickToClose: false,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_post = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeModal = function() {
+      $scope.modal_post.hide();
+  };
+
+  $scope.successModal = function() {
+      $scope.modal_post.hide();
+      $state.go('menu.post');
+  };
+
+  // Open the login modal
+  $scope.openModal = function() {
+      $scope.modal_post.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doModal = function() {
+      console.log('Adding post...', $scope.postData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeModal();
+    }, 1000);
+  };
+
+  $scope.addCategory = function() {
+
+  }
 })
 
 .controller('PostCtrl', function($scope, $stateParams, $state) {
+  $scope.data = {};
+  $scope.showSearch = false;
+
   $scope.createBoard = function() {
     $state.go('menu.board');
   };
+  $scope.showSearchBar = function() {
+      $scope.showSearch = true;
+  };
+  $scope.hideSearchBar = function() {
+      $scope.showSearch = false;
+  };
+  $scope.clearSearch = function() {
+    $scope.data.searchQuery = '';
+  };
+
 })
 
-.controller('BoardCtrl', function($scope){
+.controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout){
+    $scope.recruitData = {};
 
+   $ionicModal.fromTemplateUrl('templates/recruitment.html', {
+    id: '1',
+    scope: $scope,
+    backdropClickToClose: false,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_recruit = modal;
+  });
+
+  // Triggered in the login modal to close it
+  $scope.closeModal = function() {
+      $scope.modal_recruit.hide();
+  };
+
+  $scope.successModal = function() {
+      $scope.modal_recruit.hide();
+      $state.go('menu.board');
+  };
+
+  // Open the login modal
+  $scope.openModal = function() {
+      $scope.modal_recruit.show();
+  };
+
+  // Perform the login action when the user submits the login form
+  $scope.doModal = function() {
+      console.log('Adding position...', $scope.recruitData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeModal();
+    }, 1000);
+  };
 })
 
 .controller('PitchingCtrl', function($scope) {

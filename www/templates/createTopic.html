@@ -1,0 +1,38 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Create Post</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doModal()">
+      <div class="list create-post">
+        <label class="item item-input">
+          <span class="input-label">Title</span>
+          <input type="text" ng-model="postData.title">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Photo</span>
+          <input type="file" ng-model="postData.photo">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Details</span>
+          <textarea ng-model="postData.details"></textarea>
+        </label>
+        <div class="item item-divider item-button-right">
+          <span class="input-label">Category</span>
+          <button class="button button-positive" ng-click="addCategory()">
+            <i class="icon ion-plus-circled"></i>
+          </button>
+        </div>
+        <label class="item item-input">
+          <input type="text" ng-model="postData.details"></input>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit" ng-click="successModal()">Add a new post</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

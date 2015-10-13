@@ -6,12 +6,20 @@
   	<!-- showing category items that users can slide to look at specific category -->
   	<div class="list">
 	<div class="post-contributor-box">
-		<ion-slide-box ng-init="cardRotate=[] ">
+		<tab-slide-box tab="0">
+			<div class="tsb-icons">
+                    <div class="tsb-ic-wrp">
+                    	<ion-scroll direction="x" class="tsb-hscroll">
+	                        <a href="javascript:;">Category</a>
+	                        <a href="javascript:;">Technical</a>
+	                        <a href="javascript:;">Financial</a>
+	                        <a href="javascript:;">Others</a>
+	                    </ion-scroll>
+                    </div>
+            </div>
+		<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
 			<ion-slide>
-			<div class="post-contributor-content" ng-class="{rotate:cardRotate[0]===1}" ng-click="(cardRotate[0]===1) ? (cardRotate[0]=0) : (cardRotate[0]=1)">
-			<div class="item post-category-slider">
-  				<p>Category</p>
-			</div>
+			<div class="post-contributor-content">
 			<a href="#" class="post-contributor-icon">
 				<div>
 					<img src="img/team_member1.jpg">
@@ -28,13 +36,71 @@
 				</div>
 			</a>
 			<div class="clearBoth"></div>
+			<div class="post-description">
+			<div class="pd-author-box">
+				<div class="post-description-left">
+					<img src="img/propic.jpg">
+				</div>
+				<div class="post-description-middle">
+					<h2>Elvis Wong</h2>
+					<p>Founder - Mobile Developer</p>
+				</div>
+				<div class="post-description-right">
+					<span>1 day ago</span>
+				</div>
+				<div class="clearBoth"></div>
+			</div>
+		<div class="item pd-detail">
+			<h4>Background</h4>
+			<div class="item item-text-wrap">
+		      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		    </div>
+			<br>
+		    <h4>Project Description</h4>
+			<div class="item item-text-wrap">
+		     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+		    </div>
+		    <br>
+		    <h4>Innovations</h4>
+			<div class="item item-text-wrap">
+		      "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+		    </div>
+		    <br>
+		    <h4>Implementation</h4>
+			<div class="item item-text-wrap">
+		      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+		    </div>
+		    <br>
+		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+		</div>
+	</div>
+	<div class="post-comment-box">
+		<div class="post-comment-author">
+			<div class="pc-author-left">
+				<img src="img/profile_pic.png">
+			</div>
+			<div class="pc-author-middle">
+				<h2>Elvis Wong</h2>
+				<p>Position - Title</p> 
+			</div>
+			<div class="pc-author-right">
+				<span>1 day ago</span>
+			</div>
+			<div class="clearBoth"></div>
+		</div>
+		<div class="post-comment">
+			<div class="pc-content">
+				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+			</div>
+			<div class="pc-tag">
+				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+			</div>
+		</div>
+	</div>
 			</div>
 			</ion-slide>
 			<ion-slide>
 			<div class="post-contributor-content">
-			<div class="item post-category-slider">
-  				<p>Technical</p>
-			</div>
 			<a href="#" class="post-contributor-icon">
 				<div>
 					<img src="img/team_member4.jpg">
@@ -51,12 +117,8 @@
 				</div>
 			</a>
 			<div class="clearBoth"></div>
-			</div>
-			</ion-slide>
-		</ion-slide-box>
-	</div>
-	<div class="post-description">
-		<div class="item pd-author-box">
+			<div class="post-description">
+		<div class="pd-author-box">
 			<div class="post-description-left">
 				<img src="img/propic.jpg">
 			</div>
@@ -116,11 +178,186 @@
 			</div>
 		</div>
 	</div>
+			</div>
+			</ion-slide>
+			<ion-slide>
+			<div class="post-contributor-content">
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member1.jpg">
+				</div>
+			</a>
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member2.jpg">
+				</div>
+			</a>
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member3.jpg">
+				</div>
+			</a>
+			<div class="clearBoth"></div>
+			<div class="post-description">
+			<div class="pd-author-box">
+				<div class="post-description-left">
+					<img src="img/propic.jpg">
+				</div>
+				<div class="post-description-middle">
+					<h2>Elvis Wong</h2>
+					<p>Founder - Mobile Developer</p>
+				</div>
+				<div class="post-description-right">
+					<span>1 day ago</span>
+				</div>
+				<div class="clearBoth"></div>
+			</div>
+		<div class="item pd-detail">
+			<h4>Background</h4>
+			<div class="item item-text-wrap">
+		      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		    </div>
+			<br>
+		    <h4>Project Description</h4>
+			<div class="item item-text-wrap">
+		     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+		    </div>
+		    <br>
+		    <h4>Innovations</h4>
+			<div class="item item-text-wrap">
+		      "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+		    </div>
+		    <br>
+		    <h4>Implementation</h4>
+			<div class="item item-text-wrap">
+		      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+		    </div>
+		    <br>
+		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+		</div>
+	</div>
+	<div class="post-comment-box">
+		<div class="post-comment-author">
+			<div class="pc-author-left">
+				<img src="img/profile_pic.png">
+			</div>
+			<div class="pc-author-middle">
+				<h2>Elvis Wong</h2>
+				<p>Position - Title</p> 
+			</div>
+			<div class="pc-author-right">
+				<span>1 day ago</span>
+			</div>
+			<div class="clearBoth"></div>
+		</div>
+		<div class="post-comment">
+			<div class="pc-content">
+				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+			</div>
+			<div class="pc-tag">
+				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+			</div>
+		</div>
+	</div>
+			</div>
+			</ion-slide>
+			<ion-slide>
+			<div class="post-contributor-content">
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member1.jpg">
+				</div>
+			</a>
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member2.jpg">
+				</div>
+			</a>
+			<a href="#" class="post-contributor-icon">
+				<div>
+					<img src="img/team_member3.jpg">
+				</div>
+			</a>
+			<div class="clearBoth"></div>
+			<div class="post-description">
+			<div class="pd-author-box">
+				<div class="post-description-left">
+					<img src="img/propic.jpg">
+				</div>
+				<div class="post-description-middle">
+					<h2>Elvis Wong</h2>
+					<p>Founder - Mobile Developer</p>
+				</div>
+				<div class="post-description-right">
+					<span>1 day ago</span>
+				</div>
+				<div class="clearBoth"></div>
+			</div>
+		<div class="item pd-detail">
+			<h4>Background</h4>
+			<div class="item item-text-wrap">
+		      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+		    </div>
+			<br>
+		    <h4>Project Description</h4>
+			<div class="item item-text-wrap">
+		     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+		    </div>
+		    <br>
+		    <h4>Innovations</h4>
+			<div class="item item-text-wrap">
+		      "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
+		    </div>
+		    <br>
+		    <h4>Implementation</h4>
+			<div class="item item-text-wrap">
+		      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+		    </div>
+		    <br>
+		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+		</div>
+	</div>
+	<div class="post-comment-box">
+		<div class="post-comment-author">
+			<div class="pc-author-left">
+				<img src="img/profile_pic.png">
+			</div>
+			<div class="pc-author-middle">
+				<h2>Elvis Wong</h2>
+				<p>Position - Title</p> 
+			</div>
+			<div class="pc-author-right">
+				<span>1 day ago</span>
+			</div>
+			<div class="clearBoth"></div>
+		</div>
+		<div class="post-comment">
+			<div class="pc-content">
+				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+			</div>
+			<div class="pc-tag">
+				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
+			</div>
+		</div>
+	</div>
+			</div>
+			</ion-slide>
+		</ion-slide-box>
+	</tab-slide-box>
+	</div>
 </div>
   </ion-content>
   <div class="post-footer-bar">
-    <button class="button"><i class="icon ion-arrow-left-a"></i></button>
- 	<button class="button"><i class="icon ion-chatboxes"></i></button>
-    <button class="button"><i class="icon ion-happy"></i></button>
+  	<div class="bar bar-header item-input-inset search-box"  ng-show="showSearch" >
+	    <div class="item-input-wrapper" ng-show="showSearch">
+	          <i class="icon ion-ios7-search placeholder-icon"></i>
+	          <input type="search" placeholder="Search" ng-model="data.searchQuery">
+	          <i class="clear-search icon ion-close" ng-click="clearSearch()"></i>
+	    </div>
+	    <button class="button button-clear" ng-click="hideSearchBar()">Cancel</button>
+	</div>
+    <button class="button" ng-click="showSearchBar()" ng-hide="showSearch"><i class="icon ion-search"></i></button>
+ 	<button class="button" ng-hide="showSearch"><i class="icon ion-chatboxes"></i></button>
+    <button class="button" ng-hide="showSearch"><i class="icon ion-happy"></i></button>
 </div>
 </ion-view>

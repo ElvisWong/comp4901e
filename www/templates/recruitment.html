@@ -1,0 +1,25 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Recruitment Position</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form ng-submit="doModal()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Position</span>
+          <input type="text" ng-model="recruitData.position">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Details</span>
+          <textarea ng-model="recruitData.details" rows="6"></textarea>
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit" ng-click="successModal()">Recruit for new position!</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
