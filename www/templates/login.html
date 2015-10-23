@@ -1,24 +1,24 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Login</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="closeModal(1)">Close</button>
+    <div class="buttons modal-close-btn">
+      <button class="button button-clear button-balanced" ng-click="closeModal(1)">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
     <form ng-submit="doModal(1)">
+      <h4 class="login-text">Connect to your thoughts through the people who make your ideas happen.</h4>
+      <p class="login-text-para">Share your big innovative ideas & enjoy the support here</p>
       <div class="list">
-        <label class="item item-input">
+        <label class="item item-input modal-login-field">
           <span class="input-label">Username</span>
           <input type="text" ng-model="loginData.username">
         </label>
-        <label class="item item-input">
+        <label class="item item-input modal-login-field">
           <span class="input-label">Password</span>
           <input type="password" ng-model="loginData.password">
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit" ng-click="successModal(1)">Log in</button>
-        </label>
+          <a href="#/app/login"><p class="login-text-span">Forget your password?</p></a>
+          <button class="button modal-login-btn" type="submit" ng-click="successModal(1)">Log in</button>
       </div>
     </form>
   </ion-content>

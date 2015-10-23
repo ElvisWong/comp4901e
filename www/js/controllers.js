@@ -78,12 +78,20 @@ angular.module('starter.controllers', [])
 .controller('DiscussionForumCtrl', function($scope, $ionicModal, $state, $timeout, $http) {
 
   $http.get('js/post.json').success(function(response){
-    $scope.posts = null;
     $scope.posts = response;
     console.log($scope.posts);
   });
 
   $scope.postData = {};
+  $scope.groupData = {};
+  $scope.showButton = false;
+
+  $scope.openButton = function() {
+    if($scope.showButton == true)
+      $scope.showButton = false;
+    else
+      $scope.showButton = true;
+  };
 
    $ionicModal.fromTemplateUrl('templates/createTopic.html', {
     id: '1',
@@ -94,43 +102,65 @@ angular.module('starter.controllers', [])
     $scope.modal_post = modal;
   });
 
+  $ionicModal.fromTemplateUrl('templates/createGroup.html', {
+    id: '2',
+    scope: $scope,
+    backdropClickToClose: false,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_group = modal;
+  });
+
   // Triggered in the login modal to close it
-  $scope.closeModal = function() {
+  $scope.closeModal = function(index) {
+    if (index == 1) 
       $scope.modal_post.hide();
+    else 
+      $scope.modal_group.hide();
   };
 
-  $scope.successModal = function() {
+  $scope.successModal = function(index) {
+    if (index == 1) {
       $scope.modal_post.hide();
-      $state.go('menu.post');
-  };
+      $state.go('menu.post', {postId: 1});
+    }else {
+      $scope.modal_group.hide();
+      $state.go('menu.board', {createBoardId: 1});
+    }
+  }
 
   // Open the login modal
-  $scope.openModal = function() {
+  $scope.openModal = function(index) {
+    if (index == 1)
       $scope.modal_post.show();
+    else 
+      $scope.modal_group.show();
   };
 
   // Perform the login action when the user submits the login form
-  $scope.doModal = function() {
-      console.log('Adding post...', $scope.postData);
+  $scope.doModal = function(index) {
+    if (index == 1)
+      console.log('Creating Post', $scope.postData);
+    else
+      console.log('Creating group', $scope.groupData);
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
-      $scope.closeModal();
+      $scope.closeModal(index);
     }, 1000);
   };
 
-  $scope.addCategory = function() {
-
-  }
 })
 
-.controller('PostCtrl', function($scope, $stateParams, $state) {
+.controller('PostCtrl', function($scope, $stateParams, $http, $state, $filter) {
   $scope.data = {};
   $scope.showSearch = false;
+  $scope.postId = $stateParams.postId;
+  $scope.boardId = $scope.postId;
 
   $scope.createBoard = function() {
-    $state.go('menu.board');
+    $state.go('menu.board', {createBoardId: $scope.boardId});
   };
   $scope.showSearchBar = function() {
       $scope.showSearch = true;
@@ -144,10 +174,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout){
+.controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout, $stateParams){
     $scope.recruitData = {};
 
-   $ionicModal.fromTemplateUrl('templates/recruitment.html', {
+   $ionicModal.fromTemplateUrl('templates/createGroup.html', {
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
@@ -181,6 +211,9 @@ angular.module('starter.controllers', [])
       $scope.closeModal();
     }, 1000);
   };
+
+
+
 })
 
 .controller('PitchingCtrl', function($scope) {

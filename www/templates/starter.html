@@ -1,9 +1,26 @@
 <ion-nav-view view-title="starter">
-  <ion-content class="starter">
-    <h1>This is Starter page</h1>
+  <ion-content>
+  	<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)" class="starter-slide-box">
+  	<ion-slide>
+  	<div class="starter1"></div>
+    <h1 class="starter-text">Welcome!</h1>
+    <h4 class="starter-text-para">Welcome to the wonderful world of Cooper. With advanced features of activating account and new login widgets, you will definitely have a great experience of using Cooper.</h4>
+	</ion-slide>
+  	<ion-slide>
+  	<div class="starter2"></div>
+    <h1 class="starter-text">Our Goal:</h1>
+    <h4 class="starter-text-para">Our app aims at offering a mobile platform to group people with similar interest or have similar idea together. Helping people explore their ideas and brainstorm it with others. Our ultimate goal is to build idea base which all the people can get help from it.</h4>
+	</ion-slide>
+  	<ion-slide>
+  	<div class="starter3"></div>
+    <h1 class="starter-text-name">COOPER</h1>
+    <h4 class="starter-text-slogan">Idea sharing , Brainstorming , Team Forming - Platform.</h4>
     <div class="row responsive-sm">
-    	<button class="button button-balanced" ng-click="openModal(1)">Sign Up</button>
-    	<button class="button button-light" ng-click="openModal(2)">Register</button>
+    	<button class="button button-balanced sign-up-btn" ng-click="openModal(1)"><strong>Continue your progress!</strong></button>
+    	<button class="button button-light register-btn" ng-click="openModal(2)"><strong>Sign up<strong></button>
     </div>
+    <p class="starter-text-span">Copyright © 2012 Cooper Inc. All rights reserved.</p>
+	</ion-slide>
+	</ion-slide-box>
   </ion-content>
 </ion-nav-view>

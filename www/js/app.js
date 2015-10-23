@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'angular-timeline', '
   })
 
   .state('menu.board', {
-    url: '/home/createBoard',
+    url: '/home/createBoard/:createBoardId',
     views: {
       'menuContent': {
         templateUrl: 'templates/createBoard.html',

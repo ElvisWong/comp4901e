@@ -1,3 +1,4 @@
+[
 {
     "id": 1,
     "first_name": "Patrick",
@@ -191,3 +192,4 @@
     "title": "Creativity composer, keep cool.",
     "intro": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year."
 }
+]

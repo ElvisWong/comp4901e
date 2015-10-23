@@ -1,14 +1,150 @@
 [
 {
     "id": 1,
+    "title": "Develop an idea sharing platform",
     "author": "Cyprus",
     "image": ["img/team_member1.jpg", "img/team_member2.jpg", "img/team_member3.jpg"],
     "date": "2015-03-24",
     "time": "17:45:12",
     "like": 13,
     "view": 200,
-    "category": ["Mobile App", "Idea", "Sharing"],
-    "tag": ["Android", "ionic", "HKUST"],
-    "title": "Creativity composer, keep cool.",
-    "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year."
-}]
+    "categorys": [
+            {
+                "cname": "All",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Technical",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Financial",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Others",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            }
+    ]
+},
+{
+    "id": 2,
+    "title": "Start a cafe shop in Hong Kong",
+    "author": "Leborn James",
+    "image": ["img/team_member1.jpg", "img/team_member2.jpg", "img/team_member3.jpg"],
+    "date": "2015-03-24",
+    "time": "17:45:12",
+    "like": 494,
+    "view": 2459,
+    "categorys": [
+            {
+                "cname": "All",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Technical",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Financial",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Others",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            }
+    ]
+},
+{
+    "id": 3,
+    "title": "COMP4901E - Group project",
+    "author": "Jason Tang",
+    "image": ["img/team_member1.jpg", "img/team_member2.jpg", "img/team_member3.jpg"],
+    "date": "2015-03-24",
+    "time": "17:45:12",
+    "like": 52,
+    "view": 2350,
+    "categorys": [
+            {
+                "cname": "All",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Technical",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Financial",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Others",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            }
+    ]
+},
+{
+    "id": 4,
+    "title": "Photoshooting gallary",
+    "author": "Quennie",
+    "image": ["img/team_member1.jpg", "img/team_member2.jpg", "img/team_member3.jpg"],
+    "date": "2015-03-24",
+    "time": "17:45:12",
+    "like": 757,
+    "view": 2200,
+    "categorys": [
+            {
+                "cname": "All",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Technical",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Financial",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            },{
+                "cname": "Others",
+                "contributorName": ["Elvis Wong", "Nelson Cheung", "Sam Wong", "Jerry Lam"],
+                "details": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year.",
+                "tag": ["Android", "ionic", "HKUST"],
+                "commentsId": [1,2,3,4,5]
+            }
+    ]
+}
+]
