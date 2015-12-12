@@ -26,11 +26,11 @@
         </label>
         <label class="item item-input">
           <span class="input-label">Job Title</span>
-          <input type="job-title" ng-model="jobtitle" ng-maxlength="20" required>
+          <input type="text" ng-model="jobtitle" ng-maxlength="20" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Description</span>
-          <input type="description" ng-model="description" ng-maxlength="100" required>
+          <textarea name="description" ng-model="description" ng-maxlength="100" required></textarea>
         </label>
         <label class="item item-input">
           <ion-checkbox ng-model="check" required>
@@ -50,4 +50,5 @@
         </label>
       </div>
     </form>
+    <button ng-click="testing({'name': 'helloWorld'})">Click to test!</button>
   </ion-content>

@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 /* Starter Controller */
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService, $ionicPopup, AUTH_EVENTS, USER_ROLES) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService, $ionicPopup) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -21,11 +21,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('LoginCtrl', function($rootScope, $scope, $state, AuthService, AUTH_EVENTS, USER_ROLES, $ionicPopup, $ionicLoading){
-  $scope.credentials = {
-    username: '',
-    password: ''
-  };
+.controller('LoginCtrl', function($rootScope, $scope, $state, AuthService, $ionicPopup, $ionicLoading){
 
   // $scope.currentUser = null;
   // $scope.userRoles = USER_ROLES;
@@ -81,7 +77,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading) {
+.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Test) {
   $scope.user = {
     email: '',
     username: '',
@@ -89,27 +85,38 @@ angular.module('starter.controllers', [])
     jobtitle: '',
     description: ''
   };
-  $scope.message = '';
 
-  $scope.register = function(regData) {
-    console.log("start Register");
-    $scope.$broadcast("autofill:update");
-    $ionicLoading.show({
-      template: "loading registration..."
+  $scope.testing = function(msg) {
+    console.log(msg);
+    Test.create(msg, function(msg){
+      console.log(msg);
+    }, function(e) {
+      console.log(e);
     });
-    var promise = test.register(user)
-      .success(function(msg) {
-        $scope.message = msg;
-        $state.go('app');
-        $ionicLoading.hide();
-      })
-      .error(function(e) {
-        $scope.message = e;
-        console.log(e);
-        $ionicLoading.hide();
-      })  
-    console.log("end Register");
   };
+
+  // $scope.register = function(regData) {
+  //   console.log("start Register");
+  //   $scope.$broadcast("autofill:update");
+  //   $ionicLoading.show({
+  //     template: "loading registration..."
+  //   });
+  //   test.register(user, function(msg) {
+  //       console.log(msg);
+  //       var alertPopup = $ionicPopup.alert({
+  //         title: "Done Register",
+  //         template: "Welcome to cooper"
+  //       });
+  //       $state.go('app');
+  //       $ionicLoading.hide();
+  //     }
+  //     ,function(e) {
+  //       $scope.message = e;
+  //       console.log(e);
+  //       $ionicLoading.hide();
+  //     });  
+  //   console.log("end Register");
+  // };
 
   $scope.closeReg = function() {
     $state.go('app');

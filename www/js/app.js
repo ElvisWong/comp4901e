@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.constants', 'starter.directives', 'angular-timeline', 'oitozero.ngSweetAlert', 'tabSlideBox'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.constants', 'starter.directives', 'angular-timeline', 'oitozero.ngSweetAlert', 'tabSlideBox', 'lbServices', 'ngResource'])
 
 .run(function ($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -25,7 +25,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
+.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
 
@@ -129,5 +129,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $urlRouterProvider.otherwise('/app/');
 })
 
-;
+.config(function(LoopBackResourceProvider) {
+ 
+    // Use a custom auth header instead of the default 'Authorization'
+    LoopBackResourceProvider.setAuthHeader('X-Access-Token');
+ 
+    // Change the URL where to access the LoopBack REST API server
+    LoopBackResourceProvider.setUrlBase('http://10.89.217.132:3000/api');
+  });
 

@@ -1,0 +1,26 @@
+{
+  "name": "FireUserDemo",
+  "authors": [
+    "Jonathan El-Bizri <git@elbizri.com>",
+    "Austin Brown <thataustin@gmail.com>"
+  ],
+  "license": "MIT",
+  "version": "0.4.13",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "~1.2.7",
+    "angular-ui-router": "~0.2.10",
+    "fireuser": "~0.5.1",
+    "bootstrap": "~3.1.1",
+    "fontawesome": "~4.0.3",
+    "firebase": "~1.0.17",
+    "angularfire": "~0.7.1"
+  },
+  "resolutions": {
+    "angularfire": "~0.7.1",
+    "firebase-simple-login": "~1.6.1"
+  }
+}
