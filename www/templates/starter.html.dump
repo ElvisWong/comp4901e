@@ -1,0 +1,12 @@
+<ion-nav-view view-title="starter">
+  <ion-content>
+  	<div class="starter"></div>
+    <h1 class="starter-text-name">COOPER</h1>
+    <h4 class="starter-text-slogan">Idea sharing , Brainstorming , Team Forming - Platform.</h4>
+    <div class="row responsive-sm">
+    	<button class="button button-balanced sign-up-btn" ng-click="openLogin()"><strong>Continue your progress!</strong></button>
+    	<button class="button button-light register-btn" ng-click="openSignUp()"><strong>Sign up<strong></button>
+    </div>
+    <p class="starter-text-span">Copyright 漏 2012 Cooper Inc. All rights reserved.</p>
+  </ion-content>
+</ion-nav-view>

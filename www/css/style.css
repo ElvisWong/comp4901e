@@ -109,33 +109,7 @@
   font-family: 'Architects Daughter', cursive;
 }
 
-.starter1 {
-  position: absolute;
-  background: url("../img/starter1.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -webkit-filter: opacity(.7);
-  filter: opacity(.7);
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-}
-
-.starter2 {
-  position: absolute;
-  background: url("../img/starter2.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -webkit-filter: opacity(.7);
-  filter: opacity(.7);
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-}
-
-.starter3 {
+.starter {
   position: absolute;
 	background: url("../img/starter3.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
@@ -143,7 +117,7 @@
   background-size: cover;
   -webkit-filter: opacity(.7);
   filter: opacity(.7);
-  height: 100%;
+  height: 100vh;
   width: 100%;
   z-index: -1;
 }
@@ -156,6 +130,13 @@
   -moz-border-radius: 40px; 
   -webkit-border-radius: 40px; 
   border: 2px solid #21802E;
+}
+
+.register-padding {
+  height: 100%;
+  z-index: 999;
+  color: #155819;
+  font-size: 12px;
 }
 
 .register-btn {
@@ -391,6 +372,23 @@
   width: 100%;
   max-height: 130px;
   min-height: 130px;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.post-contributor-icon-small {
+  float: left;
+  max-width: 33.3%;
+  width: 33.3%;
+  height: 100%;
+}
+
+.post-contributor-icon-small div img {
+  object-fit: cover;
+  margin-top: 30px;
+  width: 80%;
+  max-height: 100px;
+  min-height: 100px;
   height: 100%;
   border-radius: 50%;
 }

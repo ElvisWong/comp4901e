@@ -1,0 +1,37 @@
+{
+  "name": "FireUser",
+  "authors": [
+    "Jonathan El-Bizri <git@elbizri.com>",
+    "Austin Brown <thataustin@gmail.com>"
+  ],
+  "license": "MIT",
+  "version": "0.5.2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.7",
+    "angularfire": "~0.7.1"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.7",
+    "firebase": "~1.0.2",
+    "sinon": "~1.7.3",
+    "jasmine-sinon": "~0.3.1",
+    "angular-ui-router": "~0.2.10"
+  },
+  "homepage": "https://github.com/Jon-Biz/FireUser",
+  "_release": "0.5.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.5.2",
+    "commit": "e6cdf731ad4c062bb24dfe996bbb3f6429905439"
+  },
+  "_source": "git://github.com/Jon-Biz/FireUser.git",
+  "_target": "~0.5.2",
+  "_originalSource": "fireuser"
+}

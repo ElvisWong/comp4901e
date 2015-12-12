@@ -1,0 +1,20 @@
+[
+{
+	"sessionId": "076d89db-141a-11e5-8e8f-18a9059996df",
+	"userId": 1,
+	"userRole": "admin",
+	"user": [{
+	    "id": 1,
+	    "first_name": "Patrick",
+	    "last_name": "Rogers",
+	    "country": "Cyprus",
+	    "username": "abc123",
+	    "password": "abc123",
+	    "image": "img/profile_pic.png",
+	    "ip_address": "153.88.89.148",
+	    "email": "progers@yata.net",
+	    "title": "Creativity composer, keep cool.",
+	    "intro": "I am a tool for dependency management in PHP. It allows you to declare the dependent libraries your project needs and it will install them in your project for you. According to statement by Adnan Al Hammadi, Chief Executive of the Rail Agency and Transport Authority, Dubai Metro transported 33.3 million people in Q1 of 2013, a significant increase, compared to the same period of the previous year."
+	}]
+}
+]

@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
+/* Starter Controller */
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService, $ionicPopup, AUTH_EVENTS, USER_ROLES) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,83 +9,166 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+  
 
-  // Form data for the login modal
-  $scope.loginData = {};
-  $scope.regData = {};
-
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    id: '1',
-    scope: $scope,
-    backdropClickToClose: false,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal_login = modal;
-  });
-
-  $ionicModal.fromTemplateUrl('templates/register.html', {
-    id: '2',
-    scope: $scope,
-    backdropClickToClose: false,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal_reg = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeModal = function(index) {
-    if (index == 1) 
-      $scope.modal_login.hide();
-    else 
-      $scope.modal_reg.hide();
+  $scope.openLogin = function() {
+    $state.go('login');
   };
-
-  $scope.successModal = function(index) {
-    if (index == 1) {
-      $scope.modal_login.hide();
-      $state.go('menu.home');
-    }else {
-      $scope.modal_reg.hide();
-      $state.go('app');
-    }
+  
+  $scope.openSignUp = function() {
+    $state.go('register');
   }
 
-  // Open the login modal
-  $scope.openModal = function(index) {
-    if (index == 1)
-      $scope.modal_login.show();
-    else 
-      $scope.modal_reg.show();
+})
+
+.controller('LoginCtrl', function($rootScope, $scope, $state, AuthService, AUTH_EVENTS, USER_ROLES, $ionicPopup, $ionicLoading){
+  $scope.credentials = {
+    username: '',
+    password: ''
   };
 
-  // Perform the login action when the user submits the login form
-  $scope.doModal = function(index) {
-    if (index == 1)
-      console.log('Doing login', $scope.loginData);
-    else
-      console.log('Doing register', $scope.regData);
+  // $scope.currentUser = null;
+  // $scope.userRoles = USER_ROLES;
+  // $scope.isAuthorized = AuthService.isAuthorized;
+ 
+  // $scope.facebookLogin = function() {
+  //       $cordovaOauth.facebook("CLIENT_ID_HERE", ["email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
+  //           // results
+  //           $localStorage.accessToken = result.access_token;
+  //           $location.path("/menu/home");
+  //       }, function(error) {
+  //           // error
+  //           alert("There was a problem signing in!  See the console for logs");
+  //           console.log(error);
+  //       });
+  // };
+  // $cordovaOauth.dropbox(string appKey);
+    // $cordovaOauth.digitalOcean(string clientId, string clientSecret);
+    // $cordovaOauth.google(string clientId, array appScope);
+    // $cordovaOauth.github(string clientId, string clientSecret, array appScope);
+    // $cordovaOauth.linkedin(string clientId, string clientSecret, array appScope, string state);
+    // $cordovaOauth.instagram(string clientId, array appScope);
+    // $cordovaOauth.box(string clientId, string clientSecret, string state);
+    // $cordovaOauth.reddit(string clientId, string clientSecret, array appScope);
+    // $cordovaOauth.twitter(string consumerKey, string consumerSecretKey);
+    // $cordovaOauth.meetup(string consumerKey);
+    // $cordovaOauth.foursquare(string clientId);
+    // $cordovaOauth.salesforce(string loginUrl, string clientId);
+    // $cordovaOauth.strava(string clientId, string clientSecret, array appScope);
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeModal(index);
-    }, 1000);
+  $scope.setCurrentUser = function (user) {
+    //$scope.currentUser = user;
+  };
+
+  $scope.login = function (credentials) {
+    $ionicLoading.show({
+      template: "loading"
+    });
+    AuthService.login(credentials).then(function (user) {
+      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+      console.log(user);
+      $scope.setCurrentUser(user);
+      $ionicLoading.hide();
+      $state.go('menu.home');
+    }, function () {
+      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+    });
+  };
+
+    $scope.closeLogin = function() {
+    $state.go('app');
   };
 
 })
 
-.controller('DiscussionForumCtrl', function($scope, $ionicModal, $state, $timeout, $http) {
+.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading) {
+  $scope.user = {
+    email: '',
+    username: '',
+    password: '',
+    jobtitle: '',
+    description: ''
+  };
+  $scope.message = '';
 
-  $http.get('js/post.json').success(function(response){
-    $scope.posts = response;
-    console.log($scope.posts);
-  });
+  $scope.register = function(regData) {
+    console.log("start Register");
+    $scope.$broadcast("autofill:update");
+    $ionicLoading.show({
+      template: "loading registration..."
+    });
+    var promise = test.register(user)
+      .success(function(msg) {
+        $scope.message = msg;
+        $state.go('app');
+        $ionicLoading.hide();
+      })
+      .error(function(e) {
+        $scope.message = e;
+        console.log(e);
+        $ionicLoading.hide();
+      })  
+    console.log("end Register");
+  };
+
+  $scope.closeReg = function() {
+    $state.go('app');
+  };
+
+
+})
+
+.controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, AuthService, $scope, $ionicModal, $state, $timeout, $http, $location) {
+
+  // $scope.init = function() {
+  //       if($localStorage.hasOwnProperty("accessToken") === true) {
+  //           $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
+  //               $scope.profileData = result.data;
+  //           }, function(error) {
+  //               alert("There was a problem getting your profile.  Check the logs for details.");
+  //               console.log(error);
+  //           });
+  //       } else {
+  //           alert("Not signed in");
+  //           $location.path("/login");
+  //       }
+  //   };
+
+  // $http.get('json/post.json').success(function(response){
+  //   $scope.posts = response;
+  //   console.log($scope.posts);
+  // });
 
   $scope.postData = {};
   $scope.groupData = {};
   $scope.showButton = false;
+  $scope.posts = {};
+  $scope.activate = activate;
+  $scope.getPost = getPost;
+
+
+
+  activate();
+
+  $scope.logout = function() {
+    AuthService.logout();
+    $state.go('login');
+  };
+
+  function activate() {
+    getPost();
+  };
+
+  function getPost() {
+    $http.get('json/post.json')
+      .success(function(data) {
+        $scope.posts = data; 
+        console.log($scope.posts);
+      })
+      .error(function(e) {
+        console.log('Error msg on getPost: ' + e);
+      });
+  };
 
   $scope.openButton = function() {
     if($scope.showButton == true)

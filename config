@@ -4,3 +4,6 @@
 	bare = true
 	ignorecase = true
 	precomposeunicode = true
+[remote "origin"]
+	url = git@github.com:ElvisWong/comp4901e.git
+	fetch = +refs/heads/*:refs/remotes/origin/*

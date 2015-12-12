@@ -1,25 +1,27 @@
-<ion-modal-view>
+<div class="modal">
   <ion-header-bar>
     <div class="buttons modal-close-btn">
-      <button class="button button-clear button-balanced" ng-click="closeModal(1)">Close</button>
+      <button class="button button-clear button-balanced" ng-click="closeLogin()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doModal(1)">
+    <form ng-submit="login(credentials)" novalidate>
       <h4 class="login-text">Connect to your thoughts through the people who make your ideas happen.</h4>
       <p class="login-text-para">Share your big innovative ideas & enjoy the support here</p>
       <div class="list">
+        <div>{{message}}</div>
         <label class="item item-input modal-login-field">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="credentials.username">
         </label>
         <label class="item item-input modal-login-field">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="credentials.password">
         </label>
           <a href="#/app/login"><p class="login-text-span">Forget your password?</p></a>
-          <button class="button modal-login-btn" type="submit" ng-click="successModal(1)">Log in</button>
+          <button class="button modal-login-btn" type="submit">Log in</button>
       </div>
     </form>
+    <button ng-click="facebookLogin()" class="button modal-login-btn" type="submit">Facebook Login</button>
   </ion-content>
-</ion-modal-view>
+</div>

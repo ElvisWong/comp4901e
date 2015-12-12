@@ -1,37 +1,53 @@
-<ion-modal-view>
   <ion-header-bar>
     <h1 class="title">New Account</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeModal(2)">Close</button>
+      <button class="button button-clear" ng-click="closeReg()">Close</button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doModal(2)">
+    <form name="regForm" novalidate>
+      <div class="alert">{{message}}</div>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="text" ng-model="regData.email">
+          <input type="text" ng-model="email" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="regData.username">
+          <input type="text" ng-model="username" ng-minlength="5" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="regData.password1">
+          <input type="password" ng-model="password1" ng-minlength="6" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Re-type Password</span>
-          <input type="password" ng-model="regData.password2">
+          <input type="password" ng-model="password2" ng-minlength="6" required>
         </label>
-        <label class="item item-input item-checkbox">
-          <input type="checkbox" ng-model="regData.check">
+        <label class="item item-input">
+          <span class="input-label">Job Title</span>
+          <input type="job-title" ng-model="jobtitle" ng-maxlength="20" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Description</span>
+          <input type="description" ng-model="description" ng-maxlength="100" required>
+        </label>
+        <label class="item item-input">
+          <ion-checkbox ng-model="check" required>
           <span class="input-label"><a href="#/app/register"><em>I agree to the terms & conditions</em></a></span>
-        </label>
+        </ion-checkbox>
+        <!-- <div class="register-padding">
+          <p ng-show="regForm.email.$error.required">* Email is required</p>
+          <p ng-show="regForm.username.$error.required">* Username is required</p>
+          <p ng-show="regForm.email.$invalid && !regForm.email.$pristine">* Email field must be an email address</p>
+          <p ng-show="regForm.username.$error.minlength">* Username must be longer than 5 characters</p>
+          <p ng-show="regForm.password1.$error.required">* Password is required</p>
+          <p ng-show="regForm.password1.$error.minlength">* Password must be longer than 6 characters</p>
+          <p ng-show="regForm.password1!=regForm.password2">* Password does not matched<p>
+        </div> -->
         <label class="item">
-          <button class="button button-block button-positive" type="submit" ng-click="successModal(2)">Register for new user!</button>
+          <button class="button button-block button-balanced button-positive" type="submit" ng-disabled="regForm.$invalid" ng-click="register(regData)">Register for new user!</button>
         </label>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
