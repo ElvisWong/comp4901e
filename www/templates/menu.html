@@ -42,7 +42,7 @@
     <h1 class="title">Setting</h1>
   </ion-header-bar>
   <ion-content>
-    <ion-list>
+    <ion-list type="list-inset">
     <div id="profile">
       <a href="#">
         <img class="profile-img" src="img/propic.jpg">
@@ -57,9 +57,11 @@
     <ion-item menu-close href="#/munu/home">
       Terms of Use
     </ion-item>
-    <ion-item menu-close href="#/app/">
+    <button ng-click="logout()">
+    <ion-item menu-close>
       Logout
     </ion-item>
+  </button>
     </ion-list>
   </ion-content>
   </ion-side-menu>

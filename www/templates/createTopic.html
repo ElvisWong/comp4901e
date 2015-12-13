@@ -16,18 +16,22 @@
           <input type="text" ng-model="postData.title" placeholder="Title">
         </label>
         <div class="item item-input create-post-category item-icon-right">
-            <input type="text" ng-model="postData.category" placeholder="Category...">
-            <i class="icon ion-android-arrow-dropdown-circle"></i>
+            <input type="text" ng-model="addCatItem" placeholder="Category..." />
+          <div type="button" class="add-category" ng-click="addCategory()">
+                <i class="icon ion-plus-round"></i>
+          </div>
         </div>
-        <div class="add-category" ng-click="addCategory()">
-              <i class="icon ion-plus-round"></i>
+        <div width="100%">
+            <select>
+              <option ng-repeat="category in categories">{{ category.name }}</option>
+            </select>
         </div>
         <label class="item item-input create-post-details">
           <div class="propic">
               <img src="img/propic.jpg">
             </div>
           <textarea ng-model="postData.details"></textarea>
-          <p class="placeholder-text">What's on your mind?</p>
+          <p ng-show="postData.details" class="placeholder-text">What's on your mind?</p>
         </label>
         <label class="item item-input create-post-attachment">
           <i class="icon ion-ios-camera"><a href="#/menu/post"></a></i>

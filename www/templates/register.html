@@ -10,15 +10,15 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="text" ng-model="email" required>
+          <input type="text" ng-model="regData.email" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="username" ng-minlength="5" required>
+          <input type="text" ng-model="regData.username" ng-minlength="5" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="password1" ng-minlength="6" required>
+          <input type="password" ng-model="regData.password" ng-minlength="6" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Re-type Password</span>
@@ -26,11 +26,11 @@
         </label>
         <label class="item item-input">
           <span class="input-label">Job Title</span>
-          <input type="text" ng-model="jobtitle" ng-maxlength="20" required>
+          <input type="text" ng-model="regData.jobtitle" ng-maxlength="20" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Description</span>
-          <textarea name="description" ng-model="description" ng-maxlength="100" required></textarea>
+          <textarea name="description" ng-model="regData.description" ng-maxlength="100" required></textarea>
         </label>
         <label class="item item-input">
           <ion-checkbox ng-model="check" required>

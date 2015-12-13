@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.constants', 'starter.directives', 'angular-timeline', 'oitozero.ngSweetAlert', 'tabSlideBox', 'lbServices', 'ngResource'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $rootScope, $state, $location, userService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
@@ -22,7 +22,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
+
   });
+
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      if ( toState.data.auth === 'requireLogin' && !userService.getUserToken() ) {
+          console.log("go back login!");
+          $location.url('/login');
+      }
+    });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -32,23 +40,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
    .state('app', {
     url:'/app/',
     templateUrl: 'templates/starter.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    data: {auth: ''}
   })
   .state('login', {
     url:'/login',
     templateUrl: 'templates/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+    data: {auth: ''}
   })
   .state('register', {
     url:'/register',
     templateUrl: 'templates/register.html',
-    controller: 'RegisterCtrl'
+    controller: 'RegisterCtrl',
+    data: {auth: ''}
   })
   .state('menu', {
     url:'/menu',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
+    controller: 'AppCtrl',
+    data: {auth: 'requireLogin'}
   })
   .state('menu.home', {
     url:'/home',
@@ -57,10 +69,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         templateUrl: 'templates/home.html',
         controller: 'DiscussionForumCtrl'
       }
-
     }
   })
-
   .state('menu.post', {
     url: '/home/:postId',
     views: {

@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 /* Starter Controller */
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, AuthService, $ionicPopup) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, userService, Member) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,7 +9,6 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-  
 
   $scope.openLogin = function() {
     $state.go('login');
@@ -19,9 +18,19 @@ angular.module('starter.controllers', [])
     $state.go('register');
   }
 
+  $scope.logout = function() {
+    console.log("Logout..." + userService.getUserToken());
+    Member.logout({'id': userService.getUserToken()} , function(msg) {
+      userService.clearCurrentUser();
+      $state.go('login');
+    }, function(e) {
+      console.log(e);
+    });
+  };
+
 })
 
-.controller('LoginCtrl', function($rootScope, $scope, $state, AuthService, $ionicPopup, $ionicLoading){
+.controller('LoginCtrl', function($rootScope, $scope, $state, $ionicPopup, $ionicLoading, userService, Member){
 
   // $scope.currentUser = null;
   // $scope.userRoles = USER_ROLES;
@@ -53,70 +62,104 @@ angular.module('starter.controllers', [])
     // $cordovaOauth.strava(string clientId, string clientSecret, array appScope);
 
   $scope.setCurrentUser = function (user) {
-    //$scope.currentUser = user;
+    userService.setCurrentUser(user);
   };
 
   $scope.login = function (credentials) {
     $ionicLoading.show({
       template: "loading"
     });
-    AuthService.login(credentials).then(function (user) {
-      $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-      console.log(user);
-      $scope.setCurrentUser(user);
+    Member.login(JSON.stringify(credentials), function (user) {
+      console.log(user.id);
+      userService.setCurrentUser(user);
       $ionicLoading.hide();
       $state.go('menu.home');
-    }, function () {
-      $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+    }, function (e) {
+      console.log(e);
+      $ionicLoading.hide();
+      $state.go('app');
     });
+    // if (typeof credentials == 'undefined') {
+    //   $ionicPopup.alert({
+    //     title: "No credentials",
+    //     template: "Please input username and/or password!"
+    //   });
+    //   $ionicLoading.hide();
+    //   $state.go('login');
+    // }else {
+    //   credentials.token = null;
+    //   $scope.setCurrentUser(credentials);
+    //   $ionicLoading.hide();
+    //   $state.go('menu.home');
+    // }
   };
 
-    $scope.closeLogin = function() {
+  $scope.backdoorLogin = function() {
+    var fakeUser = {};
+    fakeUser.id = "12345678";
+    fakeUser.username = "Faker";
+    fakeUser.jobtitle = "Im faker";
+    console.log(fakeUser);
+    userService.setCurrentUser(fakeUser);
+    $ionicLoading.hide();
+    $state.go('menu.home');
+  };
+
+  $scope.closeLogin = function() {
     $state.go('app');
   };
 
 })
 
-.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Test) {
-  $scope.user = {
-    email: '',
-    username: '',
-    password: '',
-    jobtitle: '',
-    description: ''
-  };
+.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Member) {
+  // $scope.user = {
+  //   email: '',
+  //   username: '',
+  //   password: '',
+  //   jobtitle: '',
+  //   description: ''
+  // };
 
   $scope.testing = function(msg) {
     console.log(msg);
     Test.create(msg, function(msg){
+      $scope.testingGet();
+    }, function(e) {
+      console.log(e);
+    });
+  };
+
+  $scope.testingGet = function() {
+    console.log("run get testing");
+    Test.find({"where":{"testId":"3"}}, function(msg) {
       console.log(msg);
     }, function(e) {
       console.log(e);
     });
   };
 
-  // $scope.register = function(regData) {
-  //   console.log("start Register");
-  //   $scope.$broadcast("autofill:update");
-  //   $ionicLoading.show({
-  //     template: "loading registration..."
-  //   });
-  //   test.register(user, function(msg) {
-  //       console.log(msg);
-  //       var alertPopup = $ionicPopup.alert({
-  //         title: "Done Register",
-  //         template: "Welcome to cooper"
-  //       });
-  //       $state.go('app');
-  //       $ionicLoading.hide();
-  //     }
-  //     ,function(e) {
-  //       $scope.message = e;
-  //       console.log(e);
-  //       $ionicLoading.hide();
-  //     });  
-  //   console.log("end Register");
-  // };
+  $scope.register = function(regData) {
+    console.log("start Register");
+    $scope.$broadcast("autofill:update");
+    $ionicLoading.show({
+      template: "loading registration..."
+    });
+    Member.register(JSON.stringify(regData), function(msg) {
+        console.log(msg);
+        var alertPopup = $ionicPopup.alert({
+          title: "Done Register",
+          template: "Welcome to cooper"
+        });
+        $state.go('app');
+        $ionicLoading.hide();
+      }
+      ,function(e) {
+        $scope.message = e;
+        console.log(e);
+        $ionicLoading.hide();
+      });  
+    console.log("end Register");
+  };
 
   $scope.closeReg = function() {
     $state.go('app');
@@ -125,7 +168,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, AuthService, $scope, $ionicModal, $state, $timeout, $http, $location) {
+.controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, $scope, $ionicModal, $state, $timeout, $http, $location, userService, Member, Post) {
 
   // $scope.init = function() {
   //       if($localStorage.hasOwnProperty("accessToken") === true) {
@@ -145,46 +188,10 @@ angular.module('starter.controllers', [])
   //   $scope.posts = response;
   //   console.log($scope.posts);
   // });
+  // 
+  
 
-  $scope.postData = {};
-  $scope.groupData = {};
-  $scope.showButton = false;
-  $scope.posts = {};
-  $scope.activate = activate;
-  $scope.getPost = getPost;
-
-
-
-  activate();
-
-  $scope.logout = function() {
-    AuthService.logout();
-    $state.go('login');
-  };
-
-  function activate() {
-    getPost();
-  };
-
-  function getPost() {
-    $http.get('json/post.json')
-      .success(function(data) {
-        $scope.posts = data; 
-        console.log($scope.posts);
-      })
-      .error(function(e) {
-        console.log('Error msg on getPost: ' + e);
-      });
-  };
-
-  $scope.openButton = function() {
-    if($scope.showButton == true)
-      $scope.showButton = false;
-    else
-      $scope.showButton = true;
-  };
-
-   $ionicModal.fromTemplateUrl('templates/createTopic.html', {
+  $ionicModal.fromTemplateUrl('templates/createTopic.html', {
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
@@ -201,6 +208,63 @@ angular.module('starter.controllers', [])
   }).then(function(modal) {
     $scope.modal_group = modal;
   });
+
+  $scope.categories = [{"name": "cat1"},{"name": "cat2"}];
+  $scope.postData = {};
+  $scope.groupData = {};
+  $scope.showButton = false;
+  $scope.posts = {
+    "title": "",
+    "create_time": "",
+    "last_modified_time": "",
+    "is_recruiting": false,
+    "categories": [],
+    "view_num": 0,
+    "like_num": 0,
+    "id": null,
+    "memberId": null
+  };
+  $scope.activate = activate;
+  $scope.getPost = getPost;
+
+  activate();
+
+  function activate() {
+    getPost();
+  };
+
+  function getPost() {
+    // Post.find({}, function(post) {
+
+    // }, function(e) {
+    //   console.log(e);
+    // });
+
+    $http.get('json/post.json')
+      .success(function(data) {
+        $scope.posts = data; 
+        console.log($scope.posts);
+      })
+      .error(function(e) {
+        console.log('Error msg on getPost: ' + e);
+      });
+  };
+
+  $scope.addCategory = function() {
+    var newCat = {};
+    console.log($scope.category.item);
+    newCat.name = $scope.category.item;
+    $scope.categories.push(newCat);
+    console.log($scope.categories);
+    $scope.category.item = '';
+  };
+
+  $scope.openButton = function() {
+    if($scope.showButton == true)
+      $scope.showButton = false;
+    else
+      $scope.showButton = true;
+  };
 
   // Triggered in the login modal to close it
   $scope.closeModal = function(index) {

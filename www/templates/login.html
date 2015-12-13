@@ -11,8 +11,8 @@
       <div class="list">
         <div>{{message}}</div>
         <label class="item item-input modal-login-field">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="credentials.username">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="credentials.email">
         </label>
         <label class="item item-input modal-login-field">
           <span class="input-label">Password</span>
@@ -22,6 +22,7 @@
           <button class="button modal-login-btn" type="submit">Log in</button>
       </div>
     </form>
-    <button ng-click="facebookLogin()" class="button modal-login-btn" type="submit">Facebook Login</button>
+    <button ng-click="facebookLogin()" class="button modal-login-btn">Facebook Login</button>
+    <button class="button" ng-click="backdoorLogin()">Backdoor login</button>
   </ion-content>
 </div>
