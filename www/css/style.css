@@ -384,7 +384,7 @@ post-contributor-icon-* moved to stylesheet.css
 }
 
 .post-description {
-  width: 414px;
+  width: 100vw;
   height: auto;
 }
 
@@ -412,6 +412,8 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
   margin-top: 5px;
   float: left;
   max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
   width: 60%;
   height: auto;
   text-align: center;
@@ -445,6 +447,9 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 .post-comment-box {
   border-bottom: 1px solid #1F3E18;
   margin-bottom: 50px;
+  margin: auto;
+  display: table-cell;
+  text-align: center;
 }
 
 .post-comment-author {

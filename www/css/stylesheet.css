@@ -26,10 +26,11 @@
 }
 
 .contributers{
-	width:320px;
+	width:100vw;
 	overflow: auto;
 	height:auto;
-	margin:auto;
+	margin:0 10vw;
+	padding: auto;
 }
 
 .post-contributor-icon {
