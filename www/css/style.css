@@ -23,7 +23,9 @@
 }
 
 .item {
-	padding: 0;
+	/*
+	padding:0;
+	*/
 }
 
 .post_list {
@@ -362,38 +364,10 @@
   margin: 0;
 }
 
-.post-contributor-icon {
-  float: left;
-  max-width: 33.3%;
-  width: 33.3%;
-  height: 100%;
-}
+/*
+post-contributor-icon-* moved to stylesheet.css
+*/
 
-.post-contributor-icon div img {
-  object-fit: cover;
-  width: 100%;
-  max-height: 130px;
-  min-height: 130px;
-  height: 100%;
-  border-radius: 50%;
-}
-
-.post-contributor-icon-small {
-  float: left;
-  max-width: 33.3%;
-  width: 33.3%;
-  height: 100%;
-}
-
-.post-contributor-icon-small div img {
-  object-fit: cover;
-  margin-top: 30px;
-  width: 80%;
-  max-height: 100px;
-  min-height: 100px;
-  height: 100%;
-  border-radius: 50%;
-}
 
 .clearBoth {
   clear: both;

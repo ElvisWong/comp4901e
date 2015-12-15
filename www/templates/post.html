@@ -17,30 +17,32 @@
 		<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
 			<ion-slide ng-repeat="cat in posts.categories">
 			<div class="post-contributor-content">
-			<a href="#" class="post-contributor-icon-small">
-				<div ng-show="post.like_num">
-					<img src="img/team_member1.jpg">
+				<div class='contributers'>
+					<a href="#" class="post-contributor-icon">
+						<div ng-show="post.like_num">
+							<img src="img/team_member1.jpg">
+						</div>
+						<div ng-show="!post.like_num">
+							<img src="img/profile_pic.png">
+						</div>
+					</a>
+					<a href="#" class="post-contributor-icon">
+						<div ng-show="post.like_num">
+							<img src="img/team_member2.jpg">
+						</div>
+						<div ng-show="!post.like_num">
+							<img src="img/profile_pic.png">
+						</div>
+					</a>
+					<a href="#" class="post-contributor-icon">
+						<div ng-show="post.like_num">
+							<img src="img/team_member3.jpg">
+						</div>
+						<div ng-show="!post.like_num">
+							<img src="img/profile_pic.png">
+						</div>
+					</a>
 				</div>
-				<div ng-show="!post.like_num">
-					<img src="img/profile_pic.png">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div ng-show="post.like_num">
-					<img src="img/team_member2.jpg">
-				</div>
-				<div ng-show="!post.like_num">
-					<img src="img/profile_pic.png">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon-small">
-				<div ng-show="post.like_num">
-					<img src="img/team_member3.jpg">
-				</div>
-				<div ng-show="!post.like_num">
-					<img src="img/profile_pic.png">
-				</div>
-			</a>
 			<div class="clearBoth"></div>
 			<div class="post-description">
 			<div class="pd-author-box">
