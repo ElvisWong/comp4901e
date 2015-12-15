@@ -333,7 +333,7 @@ angular.module('starter.controllers', [])
   $scope.data = {};
   $scope.showSearch = false;
   $scope.postId = $stateParams.postId;
-  $scope.posts = {
+  $scope.post = {
     // "title": "",
     // "create_time": "",
     // "last_modified_time": "",
@@ -351,21 +351,22 @@ angular.module('starter.controllers', [])
   activate();
 
   function activate() {
+    console.log($scope.postId);
     getPost();
-    console.log($scope.posts);
+    console.log($scope.post);
   };
 
   function getPost() {
-    Post.getPost({"where": {"id": $scope.postId}}, function(response) {
+    Post.getPost(JSON.stringify({"where": {"id": $scope.postId}}), function(response) {
       $scope.post = response.post;
-      console.log($scope.post);
+      console.log($scope.post.categories);
     }, function(e) {
       console.log(e);
     });
   };
 
   function getComment(cat) {
-    
+
   }
 
   $scope.createBoard = function() {
