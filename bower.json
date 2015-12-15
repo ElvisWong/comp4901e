@@ -10,6 +10,7 @@
     "angular-animate": "~1.2.13",
     "angular-http-auth": "~1.2.2",
     "angular-local-storage": "~0.2.3",
-    "FireUser": "fireuser#~0.5.2"
+    "FireUser": "fireuser#~0.5.2",
+    "angular-toArrayFilter": "~1.0.1"
   }
 }

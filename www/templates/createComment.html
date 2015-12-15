@@ -1,10 +1,10 @@
 <ion-modal-view>
   <form ng-submit="doModal(1)">
   <ion-header-bar class="bar-balanced">
-    <h1 class="title">Create Post</h1>
+    <h1 class="title">Create Comment</h1>
     
     <div class="buttons">
-      <button class="button button-clear" type="submit" ng-click="successModal(1)">Post</button>
+      <button class="button button-clear" type="submit" ng-click="successModal(1)">Comment</button>
     </div>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeModal(1)">Close</button>
@@ -12,37 +12,38 @@
   </ion-header-bar>
   <ion-content>
       <div class="list create-post">
-        <label class="item item-input create-post-title">
-          <input type="text" ng-model="postData.title" placeholder="Title">
+<!--         <label class="item item-input create-post-title">
+          <input type="text" ng-model="commentData.title" placeholder="Title">
         </label>
         <label class="item item-input create-post-title">
-          <input type="text" ng-list ng-model="postData.tag" placeholder="Post Tags: please use ',' to split">
-        </label>
-        <div class="item item-input create-post-category item-icon-right">
+          <input type="text" ng-list ng-model="commentData.tag" placeholder="Comment Tags: please use ',' to split">
+        </label> -->
+        <!-- <div class="item item-input create-post-category item-icon-right">
             <input type="text" ng-model="data.newCat" placeholder="Category...">
           <div type="button" class="button button-balanced add-category" ng-click="addCategory(data)">
                 <i class="icon ion-plus-round"></i>
           </div>
-        </div>
+        </div> -->
+        <h2>Select Category:</h2>
         <div class="select-balanced select-category-field">
-            <select ng-model="james" ng-options="cat.name for cat in postData.categories">
-              <option title="---Select Category---" value="">---Select Category---</option>
+            <select ng-model="commentData.category">
+              <option value="{{cat}}" ng-repeat="cat in post.categories" required>{{cat}}</option>
             </select>
         </div>
-        <h2 ng-show="james.name">What's on your mind?</h2>
+        <h2>What's on your mind?</h2>
         <div>
-        <div ng-repeat="cat in postData.categories" ng-show="james.name==cat.name">
+        <div>
           <label class="item item-input create-post-details">
             <div class="propic">
                 <img src="img/propic.jpg">
               </div>
-            <textarea ng-model="postData.categories[$index].description" required></textarea>
+            <textarea ng-model="commentData.content" required></textarea>
           </label>
           <label class="item item-input create-post-title">
-            <input type="text" ng-list ng-model="postData.categories[$index].tag" placeholder="Category Tags: please use ',' to split">
+            <input type="text" ng-list ng-model="commentData.tag" placeholder="Comment Tags: please use ',' to split">
           </label>
             <!-- <p ng-show="category.name" class="placeholder-text">What's on your mind?</p> -->
-          <label class="item item-input create-post-attachment" ng-show="james.name">
+          <label class="item item-input create-post-attachment">
             <i class="icon ion-ios-camera"><a href="#/menu/post"></a></i>
             <i class="icon ion-pricetag"><a href="#/menu/post"></a></i>
             <i class="icon ion-ios-download"><a href="#/menu/post"></a></i>

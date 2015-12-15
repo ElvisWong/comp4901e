@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Member, Test) {
+.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Member) {
   // $scope.user = {
   //   email: '',
   //   username: '',
@@ -119,24 +119,6 @@ angular.module('starter.controllers', [])
   //   jobtitle: '',
   //   description: ''
   // };
-
-  $scope.testing = function(msg) {
-    console.log(msg);
-    Test.create(msg, function(msg){
-      $scope.testingGet();
-    }, function(e) {
-      console.log(e);
-    });
-  };
-
-  $scope.testingGet = function() {
-    console.log("run get testing");
-    Test.find({"where":{"id":"3"}}, function(msg) {
-      console.log(msg);
-    }, function(e) {
-      console.log(e);
-    });
-  };
 
   $scope.register = function(regData) {
     console.log("start Register");
@@ -168,10 +150,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, $scope, $ionicModal, $state, $timeout, $http, $location, userService, Member, Post) {
-
+.controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, $scope, $ionicModal, $timeout, $state, $timeout, $http, $location, userService, Member, Post) {
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
+
+
   // $scope.init = function() {
   //       if($localStorage.hasOwnProperty("accessToken") === true) {
   //           $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
@@ -299,7 +282,7 @@ angular.module('starter.controllers', [])
       $scope.modal_group.hide();
       $state.go('menu.board', {createBoardId: 1});
     }
-  }
+  };
 
   // Open the login modal
   $scope.openModal = function(index) {
@@ -314,7 +297,6 @@ angular.module('starter.controllers', [])
   $scope.doModal = function(index) {
     if (index == 1) {
       //$scope.splitTags();
-      
       console.log($scope.postData.tag, typeof $scope.postData.tag);
     }
     else
@@ -329,8 +311,12 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope, $stateParams, $http, $state, $filter, Comment, Post, Member) {
-  $scope.data = {};
+.controller('PostCtrl', function($ionicHistory, $scope, $stateParams, $http, $state, $filter, $ionicModal, $timeout ,Comment, Post, Member) {
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+
+
+  $scope.searchQuery = {};
   $scope.showSearch = false;
   $scope.postId = $stateParams.postId;
   $scope.post = {
@@ -344,30 +330,130 @@ angular.module('starter.controllers', [])
     // "id": null,
     // "memberId": null
   };
+  $scope.comments = {
+
+  };
+  $scope.commentData = {
+
+  };
+  $scope.convertDateFromString = convertDateFromString;
   $scope.activate = activate;
   $scope.getPost = getPost;
   $scope.getComment = getComment;
+  $scope.changeCategoriesToObject = changeCategoriesToObject;
+
+
+  $ionicModal.fromTemplateUrl('templates/createComment.html', {
+    id: '1',
+    scope: $scope,
+    backdropClickToClose: false,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal_createComment = modal;
+  });
+
 
   activate();
 
   function activate() {
-    console.log($scope.postId);
     getPost();
-    console.log($scope.post);
   };
 
   function getPost() {
     Post.getPost(JSON.stringify({"where": {"id": $scope.postId}}), function(response) {
-      $scope.post = response.post;
-      console.log($scope.post.categories);
+      console.log(response.post);
+      $scope.post = response.post[0];
+      changeCategoriesToObject();
+      getComment();
     }, function(e) {
       console.log(e);
     });
   };
 
-  function getComment(cat) {
+  function changeCategoriesToObject() {
+    for (x in $scope.post.categories) {
+      var temp = {};
+      temp.name = x;
+      temp.comments = {};
+      x = temp;
+    }
+  };
 
-  }
+  function getComment() {
+    Comment.getComment(JSON.stringify({"where": {"postId": $scope.post.id}}), function(response) {
+      console.log(response);
+        $scope.comments = response;
+        convertDateFromString();
+      }, function(e) {
+      console.log(e);
+    });
+  };
+
+  // function checkCommentCategory(comment) {
+  //   for(var i=0;i<comment.length;i++) {
+  //     console.log(comment[i].category);
+  //     for (var j=0;j<$scope.post.categories.length;j++) {
+  //       console.log($scope.post.categories[j]);
+  //       $scope.post.categories[j].comments = [];
+  //       console.log($scope.post);
+  //       if (comment[i].category == $scope.post.categories[j]) {
+  //         $scope.post.categories[j].comments.push(comment[i]);
+  //         console.log($scope.post.categories[j]);
+  //       }
+  //     }
+  //   }
+  // };
+
+  function convertDateFromString() {
+    for(var i=0;i<$scope.comments.length;i++){
+      var temp = new Date(Date.parse($scope.comments[i].last_modified_time));
+      $scope.comments[i].date = temp.getDate().toString() + " - " + (temp.getMonth()+1).toString() + " - " + temp.getFullYear().toString();
+      $scope.comments[i].time = temp.getHours().toString() + " : " + temp.getMinutes().toString() + " : " + temp.getSeconds().toString();
+    };
+  };
+
+  $scope.openModal = function(index) {
+    if (index == 1) {
+      $scope.modal_createComment.show();
+      console.log($scope.post.categories);
+    }
+    else 
+      $scope.modal_group.show();
+  };
+
+  $scope.closeModal = function(index) {
+    if (index == 1) 
+      $scope.modal_createComment.hide();
+    else 
+      $scope.modal_group.hide();
+  };
+
+  $scope.doModal = function(index) {
+    if (index == 1) {
+      console.log('Creating Comment', $scope.commentData);
+    }
+    else
+      console.log('Creating group', $scope.groupData);
+
+    // Simulate a login delay. Remove this and replace with your login
+    // code if using a login system
+    $timeout(function() {
+      $scope.closeModal(index);
+    }, 1000);
+  };
+
+  $scope.successModal = function(index) {
+    if (index == 1) {
+      $scope.commentData.postId = $scope.postId;
+      console.log($scope.commentData);
+      console.log(angular.toJson($scope.commentData));
+      Comment.createComment(angular.toJson($scope.commentData), function(response) {
+      $state.reload();
+    },function(e) {
+        console.log(e);
+      });
+    }
+  };
 
   $scope.createBoard = function() {
     $state.go('menu.board', {createBoardId: $scope.postId});
@@ -379,15 +465,15 @@ angular.module('starter.controllers', [])
       $scope.showSearch = false;
   };
   $scope.clearSearch = function() {
-    $scope.data.searchQuery = '';
+    $scope.searchQuery = '';
   };
 
 })
 
 .controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout, $stateParams){
-    $scope.recruitData = {};
+  $scope.recruitData = {};
 
-   $ionicModal.fromTemplateUrl('templates/createGroup.html', {
+  $ionicModal.fromTemplateUrl('templates/createGroup.html', {
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
@@ -421,8 +507,6 @@ angular.module('starter.controllers', [])
       $scope.closeModal();
     }, 1000);
   };
-
-
 
 })
 

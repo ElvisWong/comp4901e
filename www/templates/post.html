@@ -10,12 +10,12 @@
 			<div class="tsb-icons">
                     <div class="tsb-ic-wrp">
                     	<ion-scroll direction="x" class="tsb-hscroll">
-	                        <a href="javascript:;" ng-repeat="cat in post.categories">{{cat.name}}</a>
+	                        <a href="javascript:;" ng-repeat="cat in post.categories">{{cat}}</a>
 	                    </ion-scroll>
                     </div>
             </div>
 		<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
-			<ion-slide ng-repeat="cat in posts.categories">
+		<ion-slide ng-repeat="cat in post.categories">
 			<div class="post-contributor-content">
 				<div class='contributers'>
 					<a href="#" class="post-contributor-icon">
@@ -44,52 +44,29 @@
 					</a>
 				</div>
 			<div class="clearBoth"></div>
-			<div class="post-description">
-			<div class="pd-author-box">
-				<div class="post-description-left">
-					<img src="img/propic.jpg">
+			<div class="post-description" ng-repeat="comment in comments.comment | toArray: false | filter: {category: cat, $: data.searchQuery} | orderBy: last_modified_time : true">
+				<div class="pd-author-box">
+					<div class="post-description-left">
+						<img src="img/propic.jpg">
+					</div>
+					<div class="post-description-middle">
+						<h2>{{comment.author}}</h2>
+						<p>{{comment.authorTitle}}</p>
+					</div>
+					<div class="post-description-right">
+						<span>{{comment.date}}<br>{{comment.time}}</span>
+					</div>
+					<div class="clearBoth"></div>
 				</div>
-				<div class="post-description-middle">
-					<h2>Elvis Wong</h2>
-					<p>Founder - Mobile Developer</p>
+				<div class="item pd-detail">
+					<h4>Description</h4>
+					<div class="item item-text-wrap">
+				      <p>{{ comment.content }}</p>
+				    </div>
+				    <br>
+				    <p>Related Category: <span class="pd-category-tag" ng-repeat="tag in comment[$parent.$index].tags">{{tag}}&nbsp;,</span></p>
 				</div>
-				<div class="post-description-right">
-					<span>1 day ago</span>
-				</div>
-				<div class="clearBoth"></div>
 			</div>
-		<div class="item pd-detail">
-			<h4>Description</h4>
-			<div class="item item-text-wrap">
-		      <p>{{ cat.description }}</p>
-		    </div>
-		    <br>
-		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-		</div>
-	</div>
-	<div class="post-comment-box">
-		<div class="post-comment-author">
-			<div class="pc-author-left">
-				<img src="img/profile_pic.png">
-			</div>
-			<div class="pc-author-middle">
-				<h2>Elvis Wong</h2>
-				<p>Position - Title</p> 
-			</div>
-			<div class="pc-author-right">
-				<span>1 day ago</span>
-			</div>
-			<div class="clearBoth"></div>
-		</div>
-		<div class="post-comment">
-			<div class="pc-content">
-				"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-			</div>
-			<div class="pc-tag">
-				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-			</div>
-		</div>
-	</div>
 			</div>
 			</ion-slide>
 		</ion-slide-box>
@@ -107,7 +84,7 @@
 	    <button class="button button-clear" ng-click="hideSearchBar()">Cancel</button>
 	</div>
     <button class="button" ng-click="showSearchBar()" ng-hide="showSearch"><i class="icon ion-search"></i></button>
- 	<button class="button" ng-hide="showSearch"><i class="icon ion-chatboxes"></i></button>
+ 	<button class="button" ng-hide="showSearch" ng-click="openModal(1)"><i class="icon ion-chatboxes"></i></button>
     <button class="button" ng-hide="showSearch"><i class="icon ion-happy"></i></button>
 </div>
 </ion-view>

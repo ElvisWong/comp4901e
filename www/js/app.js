@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.constants', 'starter.directives', 'angular-timeline', 'oitozero.ngSweetAlert', 'tabSlideBox', 'lbServices', 'ngResource'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'starter.constants', 'starter.directives', 'angular-timeline', 'oitozero.ngSweetAlert', 'tabSlideBox', 'lbServices', 'ngResource', 'angular-toArrayFilter'])
 
 .run(function ($ionicPlatform, $rootScope, $state, $location, userService) {
   $ionicPlatform.ready(function() {
@@ -99,15 +99,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-
-  .state('menu.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
-    })
     .state('menu.pitching', {
       url: '/pitching',
       views: {
@@ -116,17 +107,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
           controller: 'PitchingCtrl'
         }
       }
-    })
-
-  .state('menu.single', {
-    url: '/pitching/:PlaylistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
+    });
   // .state('protected-route', {
   //   url: '/protected',
   //   resolve: {

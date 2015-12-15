@@ -383,6 +383,11 @@ post-contributor-icon-* moved to stylesheet.css
   border-top: 1px solid #1F3E18;
 }
 
+.post-description {
+  width: 414px;
+  height: auto;
+}
+
 .post-description-left {
   margin-left: 5px;
   float: left;
@@ -406,8 +411,8 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 .post-description-middle {
   margin-top: 5px;
   float: left;
-  max-width: 70%;
-  width: 70%;
+  max-width: 60%;
+  width: 60%;
   height: auto;
   text-align: center;
 }
@@ -425,8 +430,8 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 .post-description-right {
   margin-top: 10px;
   float: left;
-  max-width: 10%;
-  width: 10%;
+  max-width: 25%;
+  width: 25%;
   height: auto;
   text-align: center;
 }
