@@ -7,7 +7,7 @@
   <ion-content>
     <form name="regForm" novalidate>
       <div class="alert">{{message}}</div>
-      <div class="list">
+      <div class="list padding-lr-20">
         <label class="item item-input">
           <span class="input-label">Email</span>
           <input type="text" ng-model="regData.email" required>
@@ -32,10 +32,10 @@
           <span class="input-label">Description</span>
           <textarea name="description" ng-model="regData.description" ng-maxlength="100" required></textarea>
         </label>
-        <label class="item item-input">
           <ion-checkbox ng-model="check" required>
-          <span class="input-label"><a href="#/app/register"><em>I agree to the terms & conditions</em></a></span>
+          <a href="#/app/register"><em>I agree to the terms & conditions</em></a>
         </ion-checkbox>
+		  
         <!-- <div class="register-padding">
           <p ng-show="regForm.email.$error.required">* Email is required</p>
           <p ng-show="regForm.username.$error.required">* Username is required</p>
