@@ -222,7 +222,7 @@
 
 .cd-postbox {
 	position: absolute;
-	width: 50%;
+	width: 15%;
 	right: 5%;
 	color: #4EAC3E;
 	text-align: right;
@@ -231,10 +231,12 @@
 .cd-postbox span {
 	color: #535159;
 	font-size: 10px;
+  float: right;
 }
 
 .cd-postbox i {
 	font-size: 20px;
+  float: left;
 }
 
 .post-header h2 {
@@ -271,7 +273,7 @@
 
 .cd-date {
 	text-decoration: none;
-	font-size: 16px;
+	font-size: 14px;
 	color: #9893A2;
 }
 
@@ -677,21 +679,34 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 
 .create-post-title {
   width: 100%;
-  height: auto;
+  height: 50px;
   color: #777777;
   background-color: #ffffff;
   margin-bottom: 20px;
   padding-left: 10px;
 }
 
+.select-category-field {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.select-category-field > select {
+  width: 100%;
+  background-color: #33cd5f;
+  color: #fff;
+  font-size: 20px;
+}
+
 .create-post-category {
   float: left;
-  width: 80%;
+  width: 100%;
   height: auto;
   background-color: #ffffff;
   margin-bottom: 20px;
   padding-left: 10px;
   margin-right: 0px;
+  height: 50px;
 }
 
 .create-post-category input {
@@ -703,20 +718,18 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
 .create-post-category i {
   text-align: center;
   position: absolute;
-  left: 80%;
   font-size: 12px;
+
 }
 
 .add-category {
-  vertical-align: center;
+  vertical-align: middle;
   font-size: 1.6em;
-  float: right;
-  top: 34px;
-  width: 18%;
-  line-height: 1.6em;
+  width: 30%;
+  line-height: 50px;
   border: 1px solid #333333;
   text-align: center;
-  height: 1.6em;
+  height: 50px;
 }
 
 .create-post-details {
@@ -725,10 +738,16 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
   z-index: 1;
 }
 
-.create-post-details textarea {
+h2 {
   width: 100%;
-  height: 100%;
-  float: left;
+  color: #777777;
+  font-size: 20px;
+}
+
+.create-post-details textarea {
+  width: 80%;
+  margin-left: 20%;
+  height: 300px;
 }
 
 .propic {
@@ -762,7 +781,7 @@ box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.75);
   float: left;
   font-size: 2em;
   line-height: 2em;
-  color:#323232;
+  color:#33CD5F;
   padding: 0 10%;
   margin: 0;
 }
@@ -1150,8 +1169,12 @@ header h1 {
   clear: both;
 }
 .cd-timeline-content h2 {
+  width: 70%;
+  margin-right: 0px;
+  margin: 0px;
   color: #303e49;
-  font-size: 20px;
+  font-size: 24px;
+  line-height: 24px;
 }
 .cd-timeline-content h6 {
   color: #777777;

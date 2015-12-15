@@ -10,29 +10,35 @@
 			<div class="tsb-icons">
                     <div class="tsb-ic-wrp">
                     	<ion-scroll direction="x" class="tsb-hscroll">
-	                        <a href="javascript:;">General</a>
-	                        <a href="javascript:;">Technical</a>
-	                        <a href="javascript:;">Financial</a>
-	                        <a href="javascript:;">Others</a>
+	                        <a href="javascript:;" ng-repeat="cat in posts.categories">{{cat.name}}</a>
 	                    </ion-scroll>
                     </div>
             </div>
 		<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
-			<ion-slide>
+			<ion-slide ng-repeat="cat in posts.categories">
 			<div class="post-contributor-content">
 			<a href="#" class="post-contributor-icon-small">
-				<div>
+				<div ng-show="post.like_num">
 					<img src="img/team_member1.jpg">
+				</div>
+				<div ng-show="!post.like_num">
+					<img src="img/profile_pic.png">
 				</div>
 			</a>
 			<a href="#" class="post-contributor-icon">
-				<div>
+				<div ng-show="post.like_num">
 					<img src="img/team_member2.jpg">
+				</div>
+				<div ng-show="!post.like_num">
+					<img src="img/profile_pic.png">
 				</div>
 			</a>
 			<a href="#" class="post-contributor-icon-small">
-				<div>
+				<div ng-show="post.like_num">
 					<img src="img/team_member3.jpg">
+				</div>
+				<div ng-show="!post.like_num">
+					<img src="img/profile_pic.png">
 				</div>
 			</a>
 			<div class="clearBoth"></div>
@@ -51,16 +57,9 @@
 				<div class="clearBoth"></div>
 			</div>
 		<div class="item pd-detail">
-			<h4>Background</h4>
+			<h4>Description</h4>
 			<div class="item item-text-wrap">
-		      <p>Overview
-The library will have a public-facing blog that will serve to communicate library news, events and resources, as well as providing the library’s user community with the ability to comment on posts.
-Service Need
-The University of Awesomeness Library has a need for communicating changes to policies, procedures, and resources to its users. Library blogs have been shown to be an effective method of communicating with library users. 1 We currently have a home-grown blog in place, but it lacks many of the functionalities we require. 
-Project Purpose & Scope
-The purpose of this project is to provide library users with a forum for learning about and commenting on library news, events and resources through an official University of Awesomeness Library Blog. 
-Technical Challenges / Issues 
-The library is currently aware of several blog systems used by other institutions. Native mobile support on those systems seems to be lacking. Our current system has been in place since 2008and no longer meets our users’ needs. The current system also has issues with the IE browser.</p>
+		      <p>{{ cat.description }}</p>
 		    </div>
 		    <br>
 		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
@@ -83,246 +82,6 @@ The library is currently aware of several blog systems used by other institution
 		<div class="post-comment">
 			<div class="pc-content">
 				"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-			</div>
-			<div class="pc-tag">
-				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-			</div>
-		</div>
-	</div>
-			</div>
-			</ion-slide>
-			<ion-slide>
-			<div class="post-contributor-content">
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/team_member4.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/team_member5.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/team_member6.jpg">
-				</div>
-			</a>
-			<div class="clearBoth"></div>
-			<div class="post-description">
-			<div class="pd-author-box">
-				<div class="post-description-left">
-					<img src="img/propic.jpg">
-				</div>
-				<div class="post-description-middle">
-					<h2>Nelson Cheung</h2>
-					<p>Founder - Backend Developer</p>
-				</div>
-				<div class="post-description-right">
-					<span>10 hours ago</span>
-				</div>
-				<div class="clearBoth"></div>
-			</div>
-		<div class="item pd-detail">
-			<h4>Background</h4>
-			<div class="item item-text-wrap">
-		      Technical Requirements
-Primary: 
-1. Cross-browser /platform support (IE, Firefox, Chrome, Safari - PC and Mac)
-2. Mobile support (for advanced smartphones – iPhone, iPad, Android or when possible for older text based phones). We will let the chosen system that meets all other criteria best, set our minimum level of device support. 
-3. System will allow changes to minimum and maximum reservation times. 
-4. LDAP – to support campus id authentication for authors 
-5. LAMP – for locally hosted solutions (not vendors) 
-6. API with acceptable level of documentation – for locally hosted 
-7. Robust development community, reputation, or vendor supplied support.
-Secondary: 
-1. Statistics and reporting. 
-2. The system should be built using free open source software (FOSS) if locally hosted. 
-3. If hosted, the system should be built using an application framework, rather than a hard-coded. This will help the programmers to account for differences in operating systems, interfaces and displays.
-</div>
-		    <br>
-		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-		</div>
-	</div>
-	<div class="post-comment-box">
-		<div class="post-comment-author">
-			<div class="pc-author-left">
-				<img src="img/profile_pic.png">
-			</div>
-			<div class="pc-author-middle">
-				<h2>Elvis Wong</h2>
-				<p>Position - Title</p> 
-			</div>
-			<div class="pc-author-right">
-				<span>1 day ago</span>
-			</div>
-			<div class="clearBoth"></div>
-		</div>
-		<div class="post-comment">
-			<div class="pc-content">
-				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
-			</div>
-			<div class="pc-tag">
-				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-			</div>
-		</div>
-	</div>
-			</div>
-			</ion-slide>
-			<ion-slide>
-			<div class="post-contributor-content">
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_1.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_2.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_3.jpg">
-				</div>
-			</a>
-			<div class="clearBoth"></div>
-			<div class="post-description">
-			<div class="pd-author-box">
-				<div class="post-description-left">
-					<img src="img/team_member_4.jpg">
-				</div>
-				<div class="post-description-middle">
-					<h2>Sam Wong</h2>
-					<p>Founder - Full-stack Programmer</p>
-				</div>
-				<div class="post-description-right">
-					<span>1 day ago</span>
-				</div>
-				<div class="clearBoth"></div>
-			</div>
-		<div class="item pd-detail">
-			<h4>Background</h4>
-			<div class="item item-text-wrap">
-		      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		    </div>
-			<br>
-		    <h4>Project Description</h4>
-			<div class="item item-text-wrap">
-		     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-		    </div>
-		    <br>
-		    <h4>Innovations</h4>
-			<div class="item item-text-wrap">
-		      "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-		    </div>
-		    <br>
-		    <h4>Implementation</h4>
-			<div class="item item-text-wrap">
-		      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-		    </div>
-		    <br>
-		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-		</div>
-	</div>
-	<div class="post-comment-box">
-		<div class="post-comment-author">
-			<div class="pc-author-left">
-				<img src="img/profile_pic.png">
-			</div>
-			<div class="pc-author-middle">
-				<h2>Elvis Wong</h2>
-				<p>Position - Title</p> 
-			</div>
-			<div class="pc-author-right">
-				<span>1 day ago</span>
-			</div>
-			<div class="clearBoth"></div>
-		</div>
-		<div class="post-comment">
-			<div class="pc-content">
-				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
-			</div>
-			<div class="pc-tag">
-				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-			</div>
-		</div>
-	</div>
-			</div>
-			</ion-slide>
-			<ion-slide>
-			<div class="post-contributor-content">
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_4.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_5.jpg">
-				</div>
-			</a>
-			<a href="#" class="post-contributor-icon">
-				<div>
-					<img src="img/contributor_6.jpg">
-				</div>
-			</a>
-			<div class="clearBoth"></div>
-			<div class="post-description">
-			<div class="pd-author-box">
-				<div class="post-description-left">
-					<img src="img/propic.jpg">
-				</div>
-				<div class="post-description-middle">
-					<h2>Elvis Wong</h2>
-					<p>Founder - Mobile Developer</p>
-				</div>
-				<div class="post-description-right">
-					<span>1 day ago</span>
-				</div>
-				<div class="clearBoth"></div>
-			</div>
-		<div class="item pd-detail">
-			<h4>Background</h4>
-			<div class="item item-text-wrap">
-		      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		    </div>
-			<br>
-		    <h4>Project Description</h4>
-			<div class="item item-text-wrap">
-		     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-		    </div>
-		    <br>
-		    <h4>Innovations</h4>
-			<div class="item item-text-wrap">
-		      "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"
-		    </div>
-		    <br>
-		    <h4>Implementation</h4>
-			<div class="item item-text-wrap">
-		      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
-		    </div>
-		    <br>
-		    <p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>
-		</div>
-	</div>
-	<div class="post-comment-box">
-		<div class="post-comment-author">
-			<div class="pc-author-left">
-				<img src="img/contributor_6.png">
-			</div>
-			<div class="pc-author-middle">
-				<h2>Jason Chan</h2>
-				<p>Position - Title</p> 
-			</div>
-			<div class="pc-author-right">
-				<span>10 days ago</span>
-			</div>
-			<div class="clearBoth"></div>
-		</div>
-		<div class="post-comment">
-			<div class="pc-content">
-				<p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
 			</div>
 			<div class="pc-tag">
 				<p>Related Category: <span class="pd-category-tag">#Mobile</span>,<span class="pd-category-tag">#App</span>,<span class="pd-category-tag">#Idea</span>,<span class="pd-category-tag">#Share</span></p>

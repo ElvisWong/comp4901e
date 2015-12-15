@@ -1,23 +1,24 @@
 <ion-view view-title="Home">
   <ion-content>
 
-	<section id="cd-timeline" class="cd-container" ng-repeat="post in posts">
+	<section id="cd-timeline" class="cd-container" ng-repeat="post in posts | orderBy:post.last_modified_time: true">
 		<div class="cd-timeline-block">
 			<div class="cd-timeline-tagbox">
-			<a href="#" class="tag">Category</a>
-			<br>
-			<br>
-			<a href="#" class="tag">App</a>
+				<div ng-repeat="tag in post.tags | limitTo:3">
+					<a href="#" class="tag">{{tag}}</a>
+					<br>
+					<br>
+				</div>
 			</div>
 			<a href="#/menu/home/{{post.id}}" class="cd-timeline-box">
 			<div class="cd-timeline-content">
 				<h2>{{post.title}}</h2>
 				<div class="cd-postbox">
 					<i class="icon ion-thumbsup"></i>
-					<span class="cd-number">{{post.like}}</span>
+					<span class="cd-number">{{post.like_num}}</span>
 					<br>
 					<i class="icon ion-eye"></i>
-					<span class="cd-number">{{post.view}}</span>
+					<span class="cd-number">{{post.view_num}}</span>
 				</div>
 				<h6>{{post.author}}</h6>
 				

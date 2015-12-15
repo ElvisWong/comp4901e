@@ -15,31 +15,40 @@
         <label class="item item-input create-post-title">
           <input type="text" ng-model="postData.title" placeholder="Title">
         </label>
+        <label class="item item-input create-post-title">
+          <input type="text" ng-list ng-model="postData.tag" placeholder="Post Tags: please use ',' to split">
+        </label>
         <div class="item item-input create-post-category item-icon-right">
-            <input type="text" ng-model="addCatItem" placeholder="Category..." />
-          <div type="button" class="add-category" ng-click="addCategory()">
+            <input type="text" ng-model="data.newCat" placeholder="Category...">
+          <div type="button" class="button button-balanced add-category" ng-click="addCategory(data)">
                 <i class="icon ion-plus-round"></i>
           </div>
         </div>
-        <div width="100%">
-            <select>
-              <option ng-repeat="category in categories">{{ category.name }}</option>
+        <div class="select-balanced select-category-field">
+            <select ng-model="james" ng-options="cat.name for cat in postData.categories">
+              <option title="---Select Category---" value="">---Select Category---</option>
             </select>
         </div>
-        <label class="item item-input create-post-details">
-          <div class="propic">
-              <img src="img/propic.jpg">
-            </div>
-          <textarea ng-model="postData.details"></textarea>
-          <p ng-show="postData.details" class="placeholder-text">What's on your mind?</p>
-        </label>
-        <label class="item item-input create-post-attachment">
-          <i class="icon ion-ios-camera"><a href="#/menu/post"></a></i>
-          <i class="icon ion-pricetag"><a href="#/menu/post"></a></i>
-          <i class="icon ion-happy-outline"><a href="#/menu/post"></a></i>
-          <i class="icon ion-ios-location"><a href="#/menu/post"></a></i>
-        </label>
-        
+        <h2 ng-show="james.name">What's on your mind?</h2>
+        <div>
+        <div ng-repeat="cat in postData.categories" ng-show="james.name==cat.name">
+          <label class="item item-input create-post-details">
+            <div class="propic">
+                <img src="img/propic.jpg">
+              </div>
+            <textarea ng-model="postData.categories[$index].description"></textarea>
+          </label>
+          <label class="item item-input create-post-title">
+            <input type="text" ng-list ng-model="postData.categories[$index].tag" placeholder="Category Tags: please use ',' to split">
+          </label>
+            <!-- <p ng-show="category.name" class="placeholder-text">What's on your mind?</p> -->
+          <label class="item item-input create-post-attachment" ng-show="james.name">
+            <i class="icon ion-ios-camera"><a href="#/menu/post"></a></i>
+            <i class="icon ion-pricetag"><a href="#/menu/post"></a></i>
+            <i class="icon ion-ios-download"><a href="#/menu/post"></a></i>
+            <i class="icon ion-ios-location"><a href="#/menu/post"></a></i>
+          </label>
+        </div>
       </div>
   </ion-content>
   </form>

@@ -145,6 +145,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     LoopBackResourceProvider.setAuthHeader('X-Access-Token');
  
     // Change the URL where to access the LoopBack REST API server
-    LoopBackResourceProvider.setUrlBase('http://10.89.217.132:3000/api');
+    LoopBackResourceProvider.setUrlBase('http://cooperhkust.ddns.net:3000/api');
   });
 

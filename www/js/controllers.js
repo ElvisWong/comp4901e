@@ -111,7 +111,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Member) {
+.controller('RegisterCtrl', function($scope, $state, $ionicPopup, $ionicLoading, Session, Member, Test) {
   // $scope.user = {
   //   email: '',
   //   username: '',
@@ -131,7 +131,7 @@ angular.module('starter.controllers', [])
 
   $scope.testingGet = function() {
     console.log("run get testing");
-    Test.find({"where":{"testId":"3"}}, function(msg) {
+    Test.find({"where":{"id":"3"}}, function(msg) {
       console.log(msg);
     }, function(e) {
       console.log(e);
@@ -170,6 +170,8 @@ angular.module('starter.controllers', [])
 
 .controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, $scope, $ionicModal, $state, $timeout, $http, $location, userService, Member, Post) {
 
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
   // $scope.init = function() {
   //       if($localStorage.hasOwnProperty("accessToken") === true) {
   //           $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
@@ -197,7 +199,7 @@ angular.module('starter.controllers', [])
     backdropClickToClose: false,
     animation: 'slide-in-up'
   }).then(function(modal) {
-    $scope.modal_post = modal;
+    $scope.modal_createPost = modal;
   });
 
   $ionicModal.fromTemplateUrl('templates/createGroup.html', {
@@ -209,20 +211,24 @@ angular.module('starter.controllers', [])
     $scope.modal_group = modal;
   });
 
-  $scope.categories = [{"name": "cat1"},{"name": "cat2"}];
-  $scope.postData = {};
+  $scope.categories = [];
+  $scope.postData = {
+    "title": "",
+    "categories": [],
+    "tag": []
+  };
   $scope.groupData = {};
   $scope.showButton = false;
   $scope.posts = {
-    "title": "",
-    "create_time": "",
-    "last_modified_time": "",
-    "is_recruiting": false,
-    "categories": [],
-    "view_num": 0,
-    "like_num": 0,
-    "id": null,
-    "memberId": null
+    // "title": "",
+    // "create_time": "",
+    // "last_modified_time": "",
+    // "is_recruiting": false,
+    // "categories": [],
+    // "view_num": 0,
+    // "like_num": 0,
+    // "id": null,
+    // "memberId": null
   };
   $scope.activate = activate;
   $scope.getPost = getPost;
@@ -231,37 +237,41 @@ angular.module('starter.controllers', [])
 
   function activate() {
     getPost();
+    console.log($scope.posts);
   };
 
   function getPost() {
-    // Post.find({}, function(post) {
-
-    // }, function(e) {
-    //   console.log(e);
-    // });
-
-    $http.get('json/post.json')
-      .success(function(data) {
-        $scope.posts = data; 
-        console.log($scope.posts);
-      })
-      .error(function(e) {
-        console.log('Error msg on getPost: ' + e);
-      });
+    Post.getPost({}, function(data) {
+      $scope.posts = data.post;
+      console.log($scope.posts);
+      convertDateFromString();
+    }, function(e) {
+      console.log(e);
+    });
   };
 
-  $scope.addCategory = function() {
-    var newCat = {};
-    console.log($scope.category.item);
-    newCat.name = $scope.category.item;
-    $scope.categories.push(newCat);
-    console.log($scope.categories);
-    $scope.category.item = '';
+  function convertDateFromString() {
+    for(var i=0;i<$scope.posts.length;i++){
+      var temp = new Date(Date.parse($scope.posts[i].last_modified_time));
+      $scope.posts[i].date = temp.getDate().toString() + " - " + (temp.getMonth()+1).toString() + " - " + temp.getFullYear().toString();
+      $scope.posts[i].time = temp.getHours().toString() + " : " + temp.getMinutes().toString() + " : " + temp.getSeconds().toString();
+    };
+  };
+
+  $scope.addCategory = function(data) {
+    var temp = {};
+    temp.name = data.newCat;
+    temp.description = '';
+    temp.tag = [];
+    $scope.postData.categories.push(temp);
+    console.log($scope.postData.categories);
+    data.newCat = '';
   };
 
   $scope.openButton = function() {
-    if($scope.showButton == true)
+    if($scope.showButton == true) {
       $scope.showButton = false;
+    }
     else
       $scope.showButton = true;
   };
@@ -269,15 +279,22 @@ angular.module('starter.controllers', [])
   // Triggered in the login modal to close it
   $scope.closeModal = function(index) {
     if (index == 1) 
-      $scope.modal_post.hide();
+      $scope.modal_createPost.hide();
     else 
       $scope.modal_group.hide();
   };
 
   $scope.successModal = function(index) {
     if (index == 1) {
-      $scope.modal_post.hide();
-      $state.go('menu.post', {postId: 1});
+      var postId = null;
+      console.log($scope.postData);
+      console.log(angular.toJson($scope.postData));
+      Post.createPost(angular.toJson($scope.postData), function(response) {
+        console.log(response.post.id);
+        $state.go('menu.post', {postId: response.post.id});
+      },function(e) {
+        console.log(e);
+      });
     }else {
       $scope.modal_group.hide();
       $state.go('menu.board', {createBoardId: 1});
@@ -286,16 +303,20 @@ angular.module('starter.controllers', [])
 
   // Open the login modal
   $scope.openModal = function(index) {
-    if (index == 1)
-      $scope.modal_post.show();
+    if (index == 1) {
+      $scope.modal_createPost.show();
+    }
     else 
       $scope.modal_group.show();
   };
 
-  // Perform the login action when the user submits the login form
+  // Perform the createPost action when the user submits the createPost form
   $scope.doModal = function(index) {
-    if (index == 1)
-      console.log('Creating Post', $scope.postData);
+    if (index == 1) {
+      //$scope.splitTags();
+      
+      console.log($scope.postData.tag, typeof $scope.postData.tag);
+    }
     else
       console.log('Creating group', $scope.groupData);
 
@@ -308,14 +329,47 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope, $stateParams, $http, $state, $filter) {
+.controller('PostCtrl', function($scope, $stateParams, $http, $state, $filter, Comment, Post, Member) {
   $scope.data = {};
   $scope.showSearch = false;
   $scope.postId = $stateParams.postId;
-  $scope.boardId = $scope.postId;
+  $scope.posts = {
+    // "title": "",
+    // "create_time": "",
+    // "last_modified_time": "",
+    // "is_recruiting": false,
+    // "categories": [],
+    // "view_num": 0,
+    // "like_num": 0,
+    // "id": null,
+    // "memberId": null
+  };
+  $scope.activate = activate;
+  $scope.getPost = getPost;
+  $scope.getComment = getComment;
+
+  activate();
+
+  function activate() {
+    getPost();
+    console.log($scope.posts);
+  };
+
+  function getPost() {
+    Post.getPost({"where": {"id": $scope.postId}}, function(response) {
+      $scope.post = response.post;
+      console.log($scope.post);
+    }, function(e) {
+      console.log(e);
+    });
+  };
+
+  function getComment(cat) {
+    
+  }
 
   $scope.createBoard = function() {
-    $state.go('menu.board', {createBoardId: $scope.boardId});
+    $state.go('menu.board', {createBoardId: $scope.postId});
   };
   $scope.showSearchBar = function() {
       $scope.showSearch = true;
