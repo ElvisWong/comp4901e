@@ -55,12 +55,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     controller: 'RegisterCtrl',
     data: {auth: ''}
   })
+  
   .state('menu', {
     url:'/menu',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl',
     data: {auth: 'requireLogin'}
+  })
+  .state('menu.profile', {
+    url:'/Profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+    	controller: 'ProfileCtrl'
+      }
+    }
   })
   .state('menu.home', {
     url:'/home',

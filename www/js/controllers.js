@@ -150,6 +150,13 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('ProfileCtrl', function($scope, userService){
+
+	console.log(userService.getCurrentUser());
+	$scope.user=userService.getCurrentUser();
+	
+})
+
 .controller('DiscussionForumCtrl', function($httpBackend, $ionicHistory, $scope, $ionicModal, $timeout, $state, $timeout, $http, $location, userService, Member, Post) {
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
