@@ -12,25 +12,31 @@
   </ion-header-bar>
   <ion-content>
       <div class="list create-post">
-        <label class="item item-input create-post-title">
-          <input type="text" ng-model="postData.title" placeholder="Job Title">
-        </label>
         <div class="item item-input create-post-category item-icon-right">
-            <input type="text" ng-model="postData.category" placeholder="Add Major Requirements...">
-            <i class="icon ion-android-arrow-dropdown-circle" ></i>
+            <input type="text" ng-model="data.newPosition" placeholder="Add Position...">
+          <div type="button" class="button button-balanced add-category" ng-click="addPosition(data)">
+                <i class="icon ion-plus-round"></i>
+          </div>
         </div>
-        <div class="add-category" ng-click="addRole()">
-              <i class="icon ion-plus-round"></i>
-            </div>
-        <label class="item item-input create-post-details">
-          <div class="propic">
-              <img src="img/apply-pos-hdpi.png">
-            </div>
-          <textarea ng-model="postData.details"></textarea>
-          <p class="placeholder-text">Please input some position information...</p>
-        </label>
-        <label class="item item-input create-group-setting">
+        <div class="select-balanced select-category-field">
+            <select ng-model="PickPosition" ng-options="position.title for position in positionData">
+              <option title="---Select Position---" value="">---Select Position---</option>
+            </select>
+        </div>
+        <h2 ng-show="PickPosition.title">Please type in some requirement for the position - {{position.title}}</h2>
+        <div>
+        <div ng-repeat="position in positionData" ng-show="position.title==PickPosition.title">
+          <label class="item item-input create-post-details">
+            <div class="propic">
+                <img src="img/propic.jpg">
+              </div>
+            <textarea ng-model="positionData[$index].requirement" required></textarea>
+          </label>
+            <!-- <p ng-show="category.name" class="placeholder-text">What's on your mind?</p> -->
+          <label class="item item-input create-group-setting">
           <i class="icon ion-pricetag"><a href="#/menu/post"></a></i>
+        </div>
+        
           <!-- <li class="item private-toggle">
               Private:
              <label class="toggle toggle-assertive">
@@ -41,6 +47,7 @@
              </label>
           </li> -->
         </label>
+        <div>
         
       </div>
   </ion-content>

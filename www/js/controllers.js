@@ -200,6 +200,7 @@ angular.module('starter.controllers', [])
     "categories": [],
     "tag": []
   };
+  $scope.deletePost = false;
   $scope.groupData = {};
   $scope.showButton = false;
   $scope.posts = {
@@ -274,6 +275,7 @@ angular.module('starter.controllers', [])
       console.log(angular.toJson($scope.postData));
       Post.createPost(angular.toJson($scope.postData), function(response) {
         console.log(response.post.id);
+
         $state.go('menu.post', {postId: response.post.id});
       },function(e) {
         console.log(e);
@@ -311,11 +313,11 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($ionicHistory, $scope, $stateParams, $http, $state, $filter, $ionicModal, $timeout ,Comment, Post, Member) {
+.controller('PostCtrl', function($ionicHistory, $scope, $stateParams, $http, $state, $filter, $ionicModal, $timeout ,Comment, Post, Member, Like, View) {
   $ionicHistory.clearCache();
-  $ionicHistory.clearHistory();
 
 
+  $scope.showContributor = false;
   $scope.searchQuery = {};
   $scope.showSearch = false;
   $scope.postId = $stateParams.postId;
@@ -357,6 +359,7 @@ angular.module('starter.controllers', [])
 
   function activate() {
     getPost();
+    addView();
   };
 
   function getPost() {
@@ -366,6 +369,14 @@ angular.module('starter.controllers', [])
       changeCategoriesToObject();
       getComment();
     }, function(e) {
+      console.log(e);
+    });
+  };
+
+  function addView() {
+    View.addView(JSON.stringify({"postId":$scope.postId}),function(response) {
+      console.log("view added");
+    },function(e){
       console.log(e);
     });
   };
@@ -385,6 +396,17 @@ angular.module('starter.controllers', [])
         $scope.comments = response;
         convertDateFromString();
       }, function(e) {
+      console.log(e);
+    });
+  };
+
+  $scope.likePost = function() {
+    Like.clickLike(JSON.stringify({"postId": $scope.postId}), function(response) {
+      if (response.like === "Cancelled")
+        alert("cencel like");
+      else
+        alert("liked post");
+    },function(e) {
       console.log(e);
     });
   };
@@ -470,8 +492,68 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout, $stateParams){
+.controller('BoardCtrl', function($scope, $ionicModal, $state, $timeout, $stateParams, Position, Member){
   $scope.recruitData = {};
+  $scope.postId = $stateParams.createBoardId;
+  $scope.positions = [];
+  $scope.positionData = [];
+  activate();
+
+  function activate() {
+    getPosition();
+  };
+
+  function getPosition() {
+    Position.getPosition(JSON.stringify({"where": {"postId": $scope.postId}}), function(response) {
+      console.log(response.position);
+      $scope.positions = response.position;
+    }, function(e) {
+      console.log(e);
+    });
+  };
+
+  $scope.applyPosition = function(id) {
+    // Member.getMember({},function(response) {
+    //   for (var i=0;i<$scope.positions.length;i++) {
+    //     if ($scope.positions[i].memberId == response.member.id)
+    //       alert("Each person can only apply one position!");
+    //       return -1;
+    //   }
+    // },function(e) {
+    //   console.log(e);
+    // });
+    var temp = JSON.stringify({"positionId":id});
+    Position.applyPosition(JSON.stringify({"positionId":id}),function(response) {
+      console.log(response.position);
+      if (response.position === null) {
+        //var occupiedBy = Member.findOne(JSON.stringify({"where":{"memberId": response.position.memberId}}),function(response) {
+          alert("This position has been occupied by someone");
+        // },function(e) {
+        //   console.log(e);
+        // });
+      }
+      else {
+        var result = null;
+        for (var i=0;i<$scope.positions.length;i++) {
+          if ($scope.positions[i].id==id)
+            result = i;
+        }
+        $scope.positions.splice(result,1,response.position);
+        console.log($scope.positions);
+      }
+    },function(e) {
+      console.log(e);
+    });
+  }
+
+  $scope.addPosition = function(data) {
+    var temp = {};
+    temp.title = data.newPosition;
+    temp.requirement = '';
+    $scope.positionData.push(temp);
+    console.log($scope.positionData);
+    data.newPosition = '';
+  };
 
   $ionicModal.fromTemplateUrl('templates/createGroup.html', {
     id: '1',
@@ -489,7 +571,16 @@ angular.module('starter.controllers', [])
 
   $scope.successModal = function() {
       $scope.modal_recruit.hide();
-      $state.go('menu.board');
+      var temp = {};
+      temp.postId = $scope.postId;
+      temp.position = $scope.positionData;
+      Position.createPosition(JSON.stringify(temp), function(response) {
+        console.log(response);
+        getPosition();
+      }, function(e) {
+        console.log(e);
+      });
+      $state.go('menu.board', {createBoardId: $scope.postId});
   };
 
   // Open the login modal
@@ -499,7 +590,7 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doModal = function() {
-      console.log('Adding position...', $scope.recruitData);
+      console.log('Adding position...', $scope.positionData);
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system

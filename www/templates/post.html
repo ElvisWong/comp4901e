@@ -19,26 +19,26 @@
 			<div class="post-contributor-content">
 				<div class='contributers'>
 					<a href="#" class="post-contributor-icon">
-						<div ng-show="post.like_num">
+						<div ng-show="showContributor">
 							<img src="img/team_member1.jpg">
 						</div>
-						<div ng-show="!post.like_num">
+						<div ng-show="!showContributor">
 							<img src="img/profile_pic.png">
 						</div>
 					</a>
 					<a href="#" class="post-contributor-icon">
-						<div ng-show="post.like_num">
+						<div ng-show="showContributor">
 							<img src="img/team_member2.jpg">
 						</div>
-						<div ng-show="!post.like_num">
+						<div ng-show="!showContributor">
 							<img src="img/profile_pic.png">
 						</div>
 					</a>
 					<a href="#" class="post-contributor-icon">
-						<div ng-show="post.like_num">
+						<div ng-show="showContributor">
 							<img src="img/team_member3.jpg">
 						</div>
-						<div ng-show="!post.like_num">
+						<div ng-show="!showContributor">
 							<img src="img/profile_pic.png">
 						</div>
 					</a>
@@ -47,7 +47,7 @@
 			<div class="post-description" ng-repeat="comment in comments.comment | toArray: false | filter: {category: cat, $: data.searchQuery} | orderBy: last_modified_time : true">
 				<div class="pd-author-box">
 					<div class="post-description-left">
-						<img src="img/propic.jpg">
+						<img src="img/profile_pic.png">
 					</div>
 					<div class="post-description-middle">
 						<h2>{{comment.author}}</h2>
@@ -85,6 +85,6 @@
 	</div>
     <button class="button" ng-click="showSearchBar()" ng-hide="showSearch"><i class="icon ion-search"></i></button>
  	<button class="button" ng-hide="showSearch" ng-click="openModal(1)"><i class="icon ion-chatboxes"></i></button>
-    <button class="button" ng-hide="showSearch"><i class="icon ion-happy"></i></button>
+    <button class="button" ng-hide="showSearch" ng-click="likePost()"><i class="icon ion-happy"></i></button>
 </div>
 </ion-view>

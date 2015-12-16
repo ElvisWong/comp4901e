@@ -1,21 +1,23 @@
 <ion-view view-title="Recruitment Board">
+
   <ion-nav-buttons side="secondary">
       <button class="button button-icon button-clear" ng-click="openModal()"><i class="icon ion-more"></i></button>
   </ion-nav-buttons>
 	<ion-content>
 	<div class="list">
-		<div class="card member-box-decoration-1">
-			<div class="member-box">
+		<h2 ng-if="positions==null">You havent create any position!</h2>
+		<div class="card member-box-decoration-1" ng-repeat="position in positions" ng-if="positions">
+			<div class="member-box" ng-click="applyPosition(position.id)">
 				<div class="member-box-left">
-					<img src="img/propic.jpg">
+					<img src="img/apply-pos-hdpi.png" ng-show="{{!position.memberId}}">
+					<img src="img/propic.jpg"ng-show="{{position.memberId}}">
 					<div class="leader-icon">
 						<img src="img/boss-hdpi.png" />
 					</div>
 				</div>
 				<div class="member-box-right">
-					<h2 class="member-title">Mobile Developer</h2>
-					<p class="member-requirement">-HKUST Computer Science</p>
-					<p class="member-requirement">-5 years experiences in mobile app development</p>
+					<h2 class="member-title">{{position.title}}</h2>
+					<p class="member-requirement">-{{position.requirement}}</p>
 				<i class="icon ion-ios-information-outline member-icon-info"></i>
 
 				</div>
@@ -23,7 +25,7 @@
 			</div>
   		</div>
 
-  		<div class="card job-position">
+  		<!-- <div class="card job-position">
 			<div class="member-box">
 				<div class="member-box-left">
 					<img src="img/apply-pos-hdpi.png">
@@ -96,7 +98,7 @@
 				<div class="clearBoth"></div>
 				<i class="icon ion-ios-information-outline member-icon-info"></i>
 			</div>
-  		</div>
+  		</div> -->
 	</div>
 	</ion-content>
 </ion-view>

@@ -920,6 +920,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f02f17', end
   bottom: 7%;
   border: 1.5px solid #870B0B;
   opacity: 0.9;
+  z-index: 10000;
 }
 
 .cd-recruit {
