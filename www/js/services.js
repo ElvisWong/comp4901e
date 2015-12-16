@@ -24,7 +24,8 @@ angular.module('starter.services',[])
     var user = {
         token: '',
         username: 'guest',
-        jobtitle: ''
+        jobtitle: '',
+		description: 'This is a description'
     };
 
     var factory = {

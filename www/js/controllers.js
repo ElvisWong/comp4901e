@@ -150,10 +150,12 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($scope, userService){
+.controller('ProfileCtrl', function($scope, Member){
 
-	console.log(userService.getCurrentUser());
-	$scope.user=userService.getCurrentUser();
+	//console.log(userService.getCurrentUser());
+	Member.getMember({}, function(data){
+		$scope.user=data.member;
+	});
 	
 })
 
