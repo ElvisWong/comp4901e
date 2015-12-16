@@ -32,7 +32,8 @@ angular.module('starter.services',[])
         getUserToken: getUserToken,
         getUsername: getUsername,
         getJobtitle: getJobtitle,
-        clearCurrentUser: clearCurrentUser
+        clearCurrentUser: clearCurrentUser,
+		getCurrentUser: getCurrentUser
     };
 
     return factory;
@@ -40,7 +41,7 @@ angular.module('starter.services',[])
     function setCurrentUser(data) {
         user.token = data.id;
         user.username = data.username;
-        user.jobtitle = user.jobtitle;
+        user.jobtitle = data.jobtitle;
     };
 
     function getUserToken() {
@@ -61,6 +62,9 @@ angular.module('starter.services',[])
         user.username = '';
         user.jobtitle = '';
     };
+	function getCurrentUser(){
+		return user;
+	}
 })
 
 .factory('postService', function() {
