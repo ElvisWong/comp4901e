@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 /* Starter Controller */
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, $ionicPopup, userService, Member) {
+.controller('AppCtrl', function($ionicHistory, $scope, $ionicModal, $timeout, $state, $ionicPopup, userService, Member) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -150,8 +150,15 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ProfileCtrl', function($scope, userService){
+.controller('ProfileCtrl', function($scope, userService, Member){
 
+  $scope.user = {};
+
+  Member.getMember({}, function(response) {
+    $scope.user = response.member;
+  },function(e) {
+    console.log(e);
+  });
 	console.log(userService.getCurrentUser());
 	$scope.user=userService.getCurrentUser();
 	
@@ -320,11 +327,9 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($ionicHistory, $scope, $stateParams, $http, $state, $filter, $ionicModal, $timeout ,Comment, Post, Member, Like, View) {
+.controller('PostCtrl', function($ionicSlideBoxDelegate, $ionicHistory, $scope, $stateParams, $http, $state, $filter, $ionicModal, $timeout ,Comment, Post, Member, Like, View) {
   $ionicHistory.clearCache();
 
-
-  $scope.showContributor = false;
   $scope.searchQuery = {};
   $scope.showSearch = false;
   $scope.postId = $stateParams.postId;
@@ -345,6 +350,7 @@ angular.module('starter.controllers', [])
   $scope.commentData = {
 
   };
+  $scope.islike = null;
   $scope.convertDateFromString = convertDateFromString;
   $scope.activate = activate;
   $scope.getPost = getPost;
@@ -367,6 +373,10 @@ angular.module('starter.controllers', [])
   function activate() {
     getPost();
     addView();
+    isLike();
+    $timeout(function(){
+      $ionicSlideBoxDelegate.update();
+  },5000);
   };
 
   function getPost() {
@@ -413,6 +423,7 @@ angular.module('starter.controllers', [])
         alert("cencel like");
       else
         alert("liked post");
+      isLike();
     },function(e) {
       console.log(e);
     });
@@ -484,6 +495,21 @@ angular.module('starter.controllers', [])
     }
   };
 
+  function isLike() {
+    Like.isLiked(JSON.stringify({"postId": $scope.postId}),function(response) {
+      if (response.like)
+        $scope.islike = true;
+      else
+        $scope.islike = false;
+    },function(e) {
+      console.log(e);
+    });
+  };
+
+  $scope.repeatDone = function() {
+    $ionicSlideBoxDelegate.update();
+  };
+
   $scope.createBoard = function() {
     $state.go('menu.board', {createBoardId: $scope.postId});
   };
@@ -495,7 +521,7 @@ angular.module('starter.controllers', [])
   };
   $scope.clearSearch = function() {
     $scope.searchQuery = '';
-  };
+  }; 
 
 })
 

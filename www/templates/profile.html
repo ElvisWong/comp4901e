@@ -6,8 +6,17 @@
 			<img class="profile-img" src="img/propic.jpg">
 			</center>
 		</ion-item>
-  <ion-item ng-repeat="item in user">
-    {{item}}
+  <ion-item>
+    Username: {{user.username}}
+  </ion-item>
+  <ion-item>
+    Job Title: {{user.jobtitle}}
+  </ion-item>
+  <ion-item>
+    Email: {{user.email}}
+  </ion-item>
+  <ion-item>
+    Description: {{user.description}}
   </ion-item>
 </ion-list>
   </ion-content>

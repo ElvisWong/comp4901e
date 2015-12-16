@@ -2,7 +2,7 @@
   <ion-nav-buttons side="secondary">
       <button class="button button-icon button-clear" ng-click="createBoard()"><i class="icon ion-plus-round"></i></button>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content cache-view="false">
   	<!-- showing category items that users can slide to look at specific category -->
   	<div class="list">
 	<div class="post-contributor-box">
@@ -14,63 +14,62 @@
 	                    </ion-scroll>
                     </div>
             </div>
-		<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
-		<ion-slide ng-repeat="cat in post.categories">
-			<div class="post-contributor-content">
-				<div class='contributers'>
-					<a href="#" class="post-contributor-icon">
-						<div ng-show="showContributor">
-							<img src="img/team_member1.jpg">
-						</div>
-						<div ng-show="!showContributor">
+			<ion-slide-box show-pager="false" on-slide-changed="slideHasChanged($index)">
+			<ion-slide ng-repeat="cat in post.categories" repeat-done="repeatDone()">
+				<div class="post-contributor-content">
+						<a class="post-contributor-icon-small">
+<!-- 							<div ng-show="showContributor">
+								<img src="img/team_member1.jpg">
+							</div> -->
+							<div ng-show="!showContributor">
+								<img src="img/profile_pic.png">
+							</div>
+						</a>
+						<a class="post-contributor-icon">
+<!-- 							<div ng-show="showContributor">
+								<img src="img/team_member2.jpg">
+							</div> -->
+							<div ng-show="!showContributor">
+								<img src="img/profile_pic.png">
+							</div>
+						</a>
+						<a class="post-contributor-icon-small">
+<!-- 							<div ng-show="showContributor">
+								<img src="img/team_member3.jpg">
+							</div> -->
+							<div ng-show="!showContributor">
+								<img src="img/profile_pic.png">
+							</div>
+						</a>
+					</div>
+				<div class="clearBoth"></div>
+				<div class="post-description" ng-repeat="comment in comments.comment | toArray: false | filter: {category: cat, $: data.searchQuery} | orderBy: last_modified_time : true">
+					<div class="pd-author-box">
+						<div class="post-description-left">
 							<img src="img/profile_pic.png">
 						</div>
-					</a>
-					<a href="#" class="post-contributor-icon">
-						<div ng-show="showContributor">
-							<img src="img/team_member2.jpg">
+						<div class="post-description-middle">
+							<h2>{{comment.author}}</h2>
+							<p>{{comment.authorTitle}}</p>
 						</div>
-						<div ng-show="!showContributor">
-							<img src="img/profile_pic.png">
+						<div class="post-description-right">
+							<span>{{comment.date}}<br>{{comment.time}}</span>
 						</div>
-					</a>
-					<a href="#" class="post-contributor-icon">
-						<div ng-show="showContributor">
-							<img src="img/team_member3.jpg">
-						</div>
-						<div ng-show="!showContributor">
-							<img src="img/profile_pic.png">
-						</div>
-					</a>
-				</div>
-			<div class="clearBoth"></div>
-			<div class="post-description" ng-repeat="comment in comments.comment | toArray: false | filter: {category: cat, $: data.searchQuery} | orderBy: last_modified_time : true">
-				<div class="pd-author-box">
-					<div class="post-description-left">
-						<img src="img/profile_pic.png">
+						<div class="clearBoth"></div>
 					</div>
-					<div class="post-description-middle">
-						<h2>{{comment.author}}</h2>
-						<p>{{comment.authorTitle}}</p>
+					<div class="item pd-detail">
+						<h4>Description</h4>
+						<div class="item item-text-wrap">
+					      <p>{{ comment.content }}</p>
+					    </div>
+					    <br>
+					    <p>Related Category: <span class="pd-category-tag" ng-repeat="tag in comment[$parent.$index].tags">{{tag}}&nbsp;,</span></p>
 					</div>
-					<div class="post-description-right">
-						<span>{{comment.date}}<br>{{comment.time}}</span>
-					</div>
-					<div class="clearBoth"></div>
 				</div>
-				<div class="item pd-detail">
-					<h4>Description</h4>
-					<div class="item item-text-wrap">
-				      <p>{{ comment.content }}</p>
-				    </div>
-				    <br>
-				    <p>Related Category: <span class="pd-category-tag" ng-repeat="tag in comment[$parent.$index].tags">{{tag}}&nbsp;,</span></p>
 				</div>
-			</div>
-			</div>
-			</ion-slide>
-		</ion-slide-box>
-	</tab-slide-box>
+				</ion-slide>
+			</ion-slide-box>
+		</tab-slide-box>
 	</div>
 </div>
   </ion-content>
@@ -85,6 +84,6 @@
 	</div>
     <button class="button" ng-click="showSearchBar()" ng-hide="showSearch"><i class="icon ion-search"></i></button>
  	<button class="button" ng-hide="showSearch" ng-click="openModal(1)"><i class="icon ion-chatboxes"></i></button>
-    <button class="button" ng-hide="showSearch" ng-click="likePost()"><i class="icon ion-happy"></i></button>
+    <button class="button" ng-hide="showSearch" ng-click="likePost()"><i class="icon ion-happy" ng-class="{'ComeOn':islike==true}"></i></button>
 </div>
 </ion-view>
